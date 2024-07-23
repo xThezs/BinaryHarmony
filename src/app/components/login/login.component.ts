@@ -28,12 +28,22 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
   login(){
-    console.log("clicked");
+    // console.log("clicked");
     if(this.loginForm.value.login!=undefined && this.loginForm.value.password!=undefined){
-      let body ={email : this.loginForm.value.login, password : this.loginForm.value.password };
-      this.auth.login(body).subscribe(response=>{
-        console.log(response);
-      });
+      let body ={
+        email : this.loginForm.value.login,
+        password : this.loginForm.value.password
       };
-  }
+      
+      this.auth.login(body).subscribe(isLogin=>{
+        if(isLogin){
+          console.log("Connexion Successfull");
+        }
+        else{
+          console.log("Cennexion failed");
+        }
+      })
+    };
+  };
 }
+
