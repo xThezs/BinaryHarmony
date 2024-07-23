@@ -13,4 +13,10 @@ describe('AuthService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should be false',()=>{
+    service.login({email:"",password:""}).subscribe(isLogin=>{
+      expect(isLogin).toBeFalse();
+    });
+  });
 });
