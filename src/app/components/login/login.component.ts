@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule, 
-    MatSelectModule,],
+    MatSelectModule,
+    RouterModule
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -28,7 +31,6 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
   login(){
-    // console.log("clicked");
     if(this.loginForm.value.login!=undefined && this.loginForm.value.password!=undefined){
       let body ={
         email : this.loginForm.value.login,
