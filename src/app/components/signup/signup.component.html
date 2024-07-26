@@ -4,15 +4,24 @@
           <div class="card gradient-custom2 text-white" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
                 <img class="row col-3 rounded mx-auto d-block mb-3" src="img/logo.png">      
-                <form [formGroup]="loginForm" class="d-flex flex-column" (ngSubmit)="login()">
-                    <!-- Login Zone -->
+                <form [formGroup]="signupForm" class="d-flex flex-column"(ngSubmit)="signup()">
+
+                    <mat-form-field>
+                        <mat-label>
+                          <div data-mdb-input-init class="form-outline form-white">
+                            <label class="form-label" for="typeNameX">Name</label>
+                          </div>
+                        </mat-label>
+                        <input matInput formControlName="name">
+                    </mat-form-field>
+
                     <mat-form-field>
                       <mat-label>
                         <div data-mdb-input-init class="form-outline form-white">
                           <label class="form-label" for="typeEmailX">Email</label>
                         </div>
                       </mat-label>
-                      <input matInput formControlName="login">
+                      <input matInput formControlName="email">
                     </mat-form-field>
   
                     <!-- password Zone -->
@@ -24,14 +33,23 @@
                       </mat-label>
                       <input matInput formControlName="password">
                     </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>
+                          <div data-mdb-input-init class="form-outline form-white">
+                            <label class="form-label" for="typeconfirmPasswordX">Confirm Password</label>
+                          </div>
+                        </mat-label>
+                        <input matInput formControlName="confirmpassword">
+                    </mat-form-field>
   
   
-                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-                    <button [disabled]="!loginForm.valid" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                    
+                    <button [disabled]="!signupForm.valid" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Sign Up    </button>
   
                 </form>                   
                     <div>
-                        <p class="mb-0">Don't have an account? <a href="javascript:void(0)" routerLink="/signup" class="text-white-50 fw-bold">Sign Up</a>
+                        <p class="mb-0">Already have an account ? <a href="javascript:void(0)" routerLink="/login" class="text-white-50 fw-bold">Login</a>
                         </p>
                     </div>
             </div>
