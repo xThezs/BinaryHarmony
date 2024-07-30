@@ -1,0 +1,34 @@
+<form [formGroup]="uploadForm" class="d-flex flex-column"(ngSubmit)="upload()">
+
+    <mat-form-field>
+        <mat-label>
+            <div data-mdb-input-init class="form-outline form-white">
+            <label class="form-label" for="typeNameX">Name</label>
+            </div>
+        </mat-label>
+        <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>
+        <div data-mdb-input-init class="form-outline form-white">
+            <label class="form-label" for="typeauthorX">Author</label>
+        </div>
+        </mat-label>
+        <input matInput formControlName="author">
+    </mat-form-field>
+
+    
+        <label class="form-label" for="typeFileX">File</label>
+        
+        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+        <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+        <span class="file-name">{{selectedFile?.name}}</span>
+    
+
+    <button [disabled]="!uploadForm.valid" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit"> Upload </button>
+
+</form>    
+
+
+
