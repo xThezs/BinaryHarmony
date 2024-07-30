@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { Track } from '../../utils/interfaces/track.interface';
 import { PlaylistService } from '../../services/playlist/playlist.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UploadComponent } from "../upload/upload.component";
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     MatSelectModule,
     RouterModule,
   ],
