@@ -9,7 +9,7 @@ import { Track } from '../../utils/interfaces/track.interface';
 import { PlaylistService } from '../../services/playlist/playlist.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UploadComponent } from "../upload/upload.component";
-import { NavbarComponent } from '../../navbar/navbar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
