@@ -1,0 +1,26 @@
+<!-- Navbar -->
+<nav  class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div id="navbar" class="container-fluid d-flex flex-row row">
+      <!-- Navbar brand -->
+        <div id="navbar" class="col-1 d-flex">
+            <img class="" id="logo" src="img/logo.png">
+        </div>
+
+        <ul class="col-6 justify-content-between d-flex flex-row ">
+            <li [routerLinkActive]="'active'" [routerLinkActiveOptions]={exact:true}><a routerLink="/" href="javascript:void(0)">Home</a></li>
+            <li [routerLinkActive]="'active'" ><a routerLink="/libraries" href="javascript:void(0)"> Libraries </a></li>
+            <li [routerLinkActive]="'active'" ><a routerLink="/game" href="javascript:void(0)"> Play </a></li>
+            <li [routerLinkActive]="'active'"><a href="javascript:void(0)"> CGU </a ></li>
+            
+        
+        </ul>
+      <ul class="nav navbar-nav navbar-right flex-row col-1">
+        <li><a href="javascript:void(0)" class="glyphicon glyphicon-shopping-cart"></a></li>
+        <li><a routerLink="/login" href="javascript:void(0)" class="glyphicon glyphicon-user" > Login</a></li>
+        <li><a href="javascript:void(0)" class="glyphicon glyphicon-log-in" > Logout</a></li>
+      </ul>  
+
+    </div>
+</nav>
+
