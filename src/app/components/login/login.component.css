@@ -1,8 +1,74 @@
 .gradient-custom {
     background: radial-gradient(#BCBEC0, #000000);
-    
-    }
-.gradient-custom2{
-        background: radial-gradient(#8f99a9, #000000);
-        box-shadow: rgba(67, 230, 81, 0.886) 2px 20px 33px 20px
-    }
+}
+
+.gradient-custom2 {
+    background: radial-gradient(#8f99a9, #000000);
+    box-shadow: rgba(67, 230, 81, 0.886) 2px 20px 33px 20px;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 30px;
+}
+
+.mat-form-field {
+    width: 100%;
+    position: relative;
+    transition: border-color 0.3s ease;
+}
+
+.mat-form-field:hover .mat-form-field-underline {
+    border-color: #ffcc00; /* Couleur de soulignement au survol */
+}
+
+.mat-form-field input {
+    color: #ffffff; /* Texte blanc */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Ajout de transitions */
+    background-color: rgba(255, 255, 255, 0.1); /* Fond légèrement transparent */
+}
+
+.mat-form-field input:focus {
+    background-color: rgba(255, 255, 255, 0.2); /* Fond au focus */
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.8); /* Ombre au focus */
+    outline: none; /* Retirer le contour par défaut */
+}
+
+.mat-form-field label {
+    color: #ffffff; /* Étiquette blanche */
+    transition: transform 0.3s ease, color 0.3s ease; /* Transition pour l'étiquette */
+}
+
+.mat-form-field input:focus + .mat-form-field-label {
+    transform: translateY(-20px); /* Étiquette se déplace lors du focus */
+    color: #ffcc00; /* Couleur de l'étiquette au focus */
+}
+
+.logo {
+    transition: transform 0.3s ease; /* Transition pour le logo */
+}
+
+.logo:hover {
+    transform: scale(1.1); /* Agrandir le logo au survol */
+}
+
+.btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+a {
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffcc00; /* Couleur au survol */
+}

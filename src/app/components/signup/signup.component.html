@@ -1,61 +1,41 @@
 <section class="vh-100 gradient-custom container-fluid">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-6 col-lg-5 col-xl-4">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4">
           <div class="card gradient-custom2 text-white" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-                <img class="row col-3 rounded mx-auto d-block mb-3" src="img/logo.png">      
-                <form [formGroup]="signupForm" class="d-flex flex-column"(ngSubmit)="signup()">
+              <div class="card-body p-5 text-center">
+                  <img class="row col-3 rounded mx-auto d-block mb-4" src="img/logo.png" alt="Logo">
+                  <h2 class="mb-4">Create Account</h2>
+                  <form [formGroup]="signupForm" class="d-flex flex-column" (ngSubmit)="signup()">
 
-                    <mat-form-field>
-                        <mat-label>
-                          <div data-mdb-input-init class="form-outline form-white">
-                            <label class="form-label" for="typeNameX">Name</label>
-                          </div>
-                        </mat-label>
-                        <input matInput formControlName="name">
-                    </mat-form-field>
+                      <mat-form-field class="mb-3">
+                          <mat-label>Name</mat-label>
+                          <input matInput formControlName="name" required>
+                      </mat-form-field>
 
-                    <mat-form-field>
-                      <mat-label>
-                        <div data-mdb-input-init class="form-outline form-white">
-                          <label class="form-label" for="typeEmailX">Email</label>
-                        </div>
-                      </mat-label>
-                      <input matInput formControlName="email">
-                    </mat-form-field>
-  
-                    <!-- password Zone -->
-                    <mat-form-field>
-                      <mat-label>
-                        <div data-mdb-input-init class="form-outline form-white">
-                          <label class="form-label" for="typePasswordX">Password</label>
-                        </div>
-                      </mat-label>
-                      <input matInput formControlName="password">
-                    </mat-form-field>
+                      <mat-form-field class="mb-3">
+                          <mat-label>Email</mat-label>
+                          <input matInput formControlName="email" required>
+                      </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label>
-                          <div data-mdb-input-init class="form-outline form-white">
-                            <label class="form-label" for="typeconfirmPasswordX">Confirm Password</label>
-                          </div>
-                        </mat-label>
-                        <input matInput formControlName="confirmpassword">
-                    </mat-form-field>
-  
-  
-                    
-                    <button [disabled]="!signupForm.valid" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Sign Up    </button>
-  
-                </form>                   
-                    <div>
-                        <p class="mb-0">Already have an account ? <a href="javascript:void(0)" routerLink="/login" class="text-white-50 fw-bold">Login</a>
-                        </p>
-                    </div>
-            </div>
+                      <mat-form-field class="mb-3">
+                          <mat-label>Password</mat-label>
+                          <input matInput formControlName="password" required type="password">
+                      </mat-form-field>
+
+                      <mat-form-field class="mb-4">
+                          <mat-label>Confirm Password</mat-label>
+                          <input matInput formControlName="confirmpassword" required type="password">
+                      </mat-form-field>
+
+                      <button [disabled]="!signupForm.valid" class="btn btn-outline-light btn-lg px-5" type="submit">Sign Up</button>
+
+                  </form>
+                  <div class="mt-4">
+                      <p class="mb-0">Already have an account? <a href="javascript:void(0)" routerLink="/login" class="text-white-50 fw-bold">Login</a></p>
+                  </div>
+              </div>
           </div>
-        </div>
-    </div>
-
-  </section>
+      </div>
+  </div>
+</section>
 

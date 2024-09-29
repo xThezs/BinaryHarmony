@@ -42,6 +42,17 @@ export class AuthService {
     return localStorage.getItem('token') !== null;
   }
 
+  getUserId(): string {
+   const token = localStorage.getItem('token'); 
+   console.log(token);
+    if (token) {
+      // const payload = JSON.parse(atob(token.split('.')[1])); 
+      const payload={userId:"1"};
+      console.log(payload);
+      return payload.userId;
+    }
+    return 'No tekken';
+  }
 
   
 }
