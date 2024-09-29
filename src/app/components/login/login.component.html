@@ -1,43 +1,33 @@
 <section class="vh-100 gradient-custom container-fluid">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-6 col-lg-5 col-xl-4">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4">
           <div class="card gradient-custom2 text-white" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-                <img class="row col-3 rounded mx-auto d-block mb-3" src="img/logo.png">      
-                <form [formGroup]="loginForm" class="d-flex flex-column" (ngSubmit)="login()">
-                    <!-- Login Zone -->
-                    <mat-form-field>
-                      <mat-label>
-                        <div data-mdb-input-init class="form-outline form-white">
-                          <label class="form-label" for="typeEmailX">Email</label>
-                        </div>
-                      </mat-label>
-                      <input matInput formControlName="login">
-                    </mat-form-field>
-  
-                    <!-- password Zone -->
-                    <mat-form-field>
-                      <mat-label>
-                        <div data-mdb-input-init class="form-outline form-white">
-                          <label class="form-label" for="typePasswordX">Password</label>
-                        </div>
-                      </mat-label>
-                      <input matInput formControlName="password">
-                    </mat-form-field>
-  
-  
-                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-                    <button [disabled]="!loginForm.valid" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-  
-                </form>                   
-                    <div>
-                        <p class="mb-0">Don't have an account? <a href="javascript:void(0)" routerLink="/signup" class="text-white-50 fw-bold">Sign Up</a>
-                        </p>
-                    </div>
-            </div>
+              <div class="card-body p-5 text-center">
+                  <img class="row col-3 rounded mx-auto d-block mb-4" src="img/logo.png" alt="Logo">
+                  <h2 class="mb-4">Login</h2>
+                  <form [formGroup]="loginForm" class="d-flex flex-column" (ngSubmit)="login()">
+                      <!-- Login Zone -->
+                      <mat-form-field class="mb-3">
+                          <mat-label>Email</mat-label>
+                          <input matInput formControlName="login" required>
+                      </mat-form-field>
+
+                      <!-- Password Zone -->
+                      <mat-form-field class="mb-4">
+                          <mat-label>Password</mat-label>
+                          <input matInput formControlName="password" required type="password">
+                      </mat-form-field>
+
+                      <p class="small mb-5 pb-lg-2">
+                          <a class="text-white-50" href="#!">Forgot password?</a>
+                      </p>
+                      <button [disabled]="!loginForm.valid" class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                  </form>
+                  <div class="mt-4">
+                      <p class="mb-0">Don't have an account? <a href="javascript:void(0)" routerLink="/signup" class="text-white-50 fw-bold">Sign Up</a></p>
+                  </div>
+              </div>
           </div>
-        </div>
-    </div>
-
-  </section>
-
+      </div>
+  </div>
+</section>

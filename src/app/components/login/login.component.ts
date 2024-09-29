@@ -16,8 +16,8 @@ import { RouterModule } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule, 
     MatSelectModule,
+    ReactiveFormsModule, 
     RouterModule
   ],
   templateUrl: './login.component.html',

@@ -1,0 +1,25 @@
+<div>
+    <h1>Ajouter une Collection</h1>
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Nom:</label>
+        <input id="name" type="text" [(ngModel)]="name" name="name" required>
+        <div *ngIf="name === ''">
+          Le nom est requis.
+        </div>
+      </div>
+  
+      <div>
+        <label for="public">Public:</label>
+        <select id="public" [(ngModel)]="publicOption" name="public" required>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <div *ngIf="publicOption === ''">
+          Le choix est requis.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="!name || !publicOption">Ajouter</button>
+    </form>
+  </div>

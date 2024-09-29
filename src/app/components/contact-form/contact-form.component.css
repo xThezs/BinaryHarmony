@@ -1,0 +1,35 @@
+.contact-section {
+    background: radial-gradient(#BCBEC0, #000000);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1); /* Fond transparent pour le card */
+    border-radius: 1rem; /* Arrondi des coins */
+    backdrop-filter: blur(10px); /* Flou d'arrière-plan */
+}
+
+.mat-form-field {
+    margin-bottom: 20px;
+}
+
+/* Effet d'animation sur les inputs */
+.mat-form-field input,
+.mat-form-field textarea {
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.mat-form-field input:focus,
+.mat-form-field textarea:focus {
+    border-color: #ffcc00; /* Couleur de bordure au focus */
+    background-color: rgba(255, 255, 255, 0.2); /* Fond légèrement plus clair au focus */
+}
+
+/* Bouton avec effet de survol */
+.btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fond au survol */
+    transform: translateY(-3px); /* Légère élévation */
+}
