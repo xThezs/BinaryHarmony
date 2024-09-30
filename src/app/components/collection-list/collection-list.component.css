@@ -16,31 +16,44 @@
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Réduit la marge du titre */
 }
 
 .collection-item {
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  margin: 10px 0;
+  padding: 5px; /* Réduit le padding */
+  margin: 3px 0; /* Réduit la marge */
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s; /* Ajoute une transition */
   cursor: pointer;
+  font-size: 0.7em; /* Réduit la taille de la police des éléments */
+}
+
+.collection-item h3 {
+  font-size: 1em; /* Réduit la taille de la police pour le nom de la collection */
+  margin: 0; /* Enlève la marge par défaut */
 }
 
 .collection-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3); /* Change la couleur au survol */
+  transform: scale(1.02); /* Légère augmentation de taille au survol */
 }
 
 .collection-info {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center; /* Centre les éléments verticalement */
+  width: 100%; /* Assurez-vous que cela prend toute la largeur */
+}
+
+.collection-info h3 {
+  flex: 1; /* Prend tout l'espace restant à gauche */
+  margin: 0; /* Enlève la marge par défaut */
 }
 
 .collection-public {
-  font-size: 0.9em;
-  color: #ccc;
+  text-align: center; /* Centre le texte */
+  flex: 1; /* Prend l'espace entre le titre et le bouton */
 }
 
 .error-message {
@@ -57,8 +70,8 @@ button {
   color: white; /* Couleur du texte */
   border: none;
   border-radius: 25px; /* Coins arrondis */
-  padding: 12px 0; /* Espacement interne */
-  font-size: 16px; /* Taille de la police */
+  padding: 10px 0; /* Espacement interne réduit */
+  font-size: 14px; /* Réduit la taille de la police du bouton */
   font-weight: bold; /* Gras */
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -75,4 +88,95 @@ button:active {
   background-color: #004494; /* Couleur lors du clic */
   transform: translateY(-1px); /* Effet de pression */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre réduite */
+}
+
+/* Enlever les puces si vous utilisez une liste */
+ul {
+  list-style-type: none; /* Enlève les puces */
+  padding: 0; /* Enlève le padding par défaut */
+}
+
+.delete-button {
+  width: 30px; 
+  height: 30px; 
+  padding: 0; 
+  background: none; /* Enlève le fond */
+  color: white; 
+  border: none; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  transition: color 0.3s ease; 
+}
+
+/* Ajout de l'effet hover pour le bouton de suppression */
+.delete-button:hover {
+  background-color: rgb(184, 40, 40); 
+}
+
+.delete-button mat-icon {
+  font-size: 20px; 
+}
+
+.content {
+  overflow: hidden; /* Évite le débordement durant les animations */
+}
+
+.hidden-audio {
+  display: none; /* Masque complètement le lecteur audio */
+}
+
+.track-info {
+  display: flex; /* Utilise flexbox pour le titre et le bouton */
+  align-items: center; /* Centre verticalement */
+  width: 100%; /* Prend toute la largeur disponible */
+}
+
+.track-item {
+  display: flex; /* Utilise flexbox pour aligner les éléments */
+  justify-content: space-between; /* Espace entre le titre et le bouton de lecture */
+  align-items: center; /* Centre verticalement les éléments */
+  width: 100%; /* Assure que cela prend toute la largeur */
+  margin: 5px 0; /* Espace entre les éléments */
+}
+
+.track-item h3 {
+  flex: 1; /* Permet au titre de prendre tout l'espace disponible */
+  margin-right: 10px; /* Espace entre le titre et le bouton */
+}
+
+.mat-icon-button {
+  width: auto; /* Permet au bouton de s'ajuster à la taille de l'icône */
+  height: auto; /* Permet au bouton de s'ajuster à la taille de l'icône */
+  border-radius: 50%; /* Arrondir pour former un cercle */
+  display: flex; /* Flexbox pour centrer l'icône */
+  justify-content: center; /* Centre l'icône horizontalement */
+  align-items: center; /* Centre l'icône verticalement */
+  background-color: transparent; /* Fond transparent */
+  border: 2px solid #3f51b5; /* Bordure de couleur */
+  transition: background-color 0.3s; /* Animation pour le changement de couleur */
+  padding: 0; /* Enlève le remplissage pour ajuster à la taille de l'icône */
+  min-width: 36px; /* Largeur minimale pour le bouton (ajustez si nécessaire) */
+  min-height: 36px; /* Hauteur minimale pour le bouton (ajustez si nécessaire) */
+}
+
+.mat-icon-button:hover {
+  background-color: rgba(63, 81, 181, 0.1); /* Couleur de fond au survol */
+}
+
+.play-button {
+  width: 36px; /* Ajuste à la taille de l'icône */
+  height: 36px; /* Ajuste à la taille de l'icône */
+  padding: 0; /* Enlève le remplissage pour s'ajuster à l'icône */
+  background: transparent; /* Fond transparent */
+  border: 2px solid #3f51b5; /* Bordure de couleur */
+  border-radius: 50%; /* Arrondir pour former un cercle */
+  display: flex; /* Utilise flexbox pour centrer l'icône */
+  justify-content: center; /* Centre l'icône horizontalement */
+  align-items: center; /* Centre l'icône verticalement */
+  transition: background-color 0.3s; /* Animation pour le changement de couleur */
+}
+
+.play-button:hover {
+  background-color: rgba(63, 81, 181, 0.1); /* Couleur de fond au survol */
 }

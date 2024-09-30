@@ -82,3 +82,10 @@ button:hover {
 button:active {
     background-color: #004494; /* Couleur lors du clic */
 }
+
+/* Message d'erreur */
+.error-message {
+    color: red; /* Couleur rouge pour les messages d'erreur */
+    font-size: 0.8rem; /* Taille de la police pour le message d'erreur */
+    margin-top: 5px; /* Espace au-dessus du message */
+}
