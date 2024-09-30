@@ -1,0 +1,64 @@
+
+:host {
+    display: block;
+    max-width: 400px; /* Limite la largeur du formulaire */
+    margin: 0; /* Supprime les marges extérieures */
+    padding: 20px; /* Espace interne pour le formulaire */
+    background-color: rgba(30, 30, 30, 0.9); /* Arrière-plan sombre avec transparence */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ombre */
+    color: white; /* Couleur du texte */
+  }
+  
+  h1 {
+    font-size: 1.5rem; /* Réduit la taille du texte */
+    text-align: center; /* Centre le texte */
+    margin-bottom: 20px; /* Espace sous le titre */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column; /* Aligne les éléments du formulaire en colonne */
+  }
+  
+  label {
+    font-size: 0.9rem; /* Taille de la police pour les labels */
+    margin-bottom: 5px; /* Espace sous le label */
+  }
+  
+  input, select {
+    padding: 10px; /* Espace interne pour les champs */
+    border: none; /* Supprime les bordures */
+    border-radius: 4px; /* Coins arrondis */
+    margin-bottom: 15px; /* Espace sous chaque champ */
+    background-color: rgba(50, 50, 50, 0.8); /* Fond sombre pour les champs */
+    color: white; /* Couleur du texte des champs */
+  }
+  
+  input:focus, select:focus {
+    outline: none; /* Supprime le contour par défaut */
+    border: 2px solid #007bff; /* Ajoute une bordure bleue lors du focus */
+  }
+  
+  button {
+    margin-top: 10px; /* Espace au-dessus du bouton */
+    padding: 12px 0; /* Espacement interne */
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border: none; /* Supprime les bordures */
+    border-radius: 25px; /* Coins arrondis */
+    font-size: 1rem; /* Taille de la police du bouton */
+    font-weight: bold; /* Gras */
+    cursor: pointer; /* Curseur pointer sur le bouton */
+    transition: background-color 0.3s ease; /* Transition douce */
+  }
+  
+  /* Hover Button */
+  button:hover {
+    background-color: #0056b3; /* Couleur au survol */
+  }
+  
+  /* Active Button */
+  button:active {
+    background-color: #004494; /* Couleur lors du clic */
+  }
