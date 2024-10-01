@@ -1,8 +1,21 @@
 <app-navbar></app-navbar>
 
-<div class="game-container">
-    <input type="text" placeholder="Enter your input" class="game-input" />
-    <button mat-raised-button color="primary" (click)="startGame()">
-      {{ buttonLabel }}
-    </button>
-  </div>
+<div *ngIf="isGameStarted" class="container">
+    <ul class="answers-list">
+        <li *ngFor="let answer of currentAnswers" 
+            [ngClass]="{'correct-answer': answer.isCorrect, 'incorrect-answer': answer.isIncorrect}"
+            class="answer-item">
+            {{ answer.name }}
+        </li>
+    </ul>
+
+    <input 
+        type="text" 
+        [(ngModel)]="gameService.userInput" 
+        (keydown.enter)="validateAnswer()" 
+        [placeholder]="placeholder"
+        class="answer-input" 
+    />
+</div>
+
+<button mat-raised-button (click)="startGame()">Start Game</button>

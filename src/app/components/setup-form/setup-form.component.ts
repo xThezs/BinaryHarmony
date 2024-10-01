@@ -57,7 +57,7 @@ export class SetupFormComponent implements OnInit {
   }
 
   validatePauseDuration(value: number): number {
-    return Math.max(5, Math.min(20, value));
+    return Math.max(1, Math.min(10, value));
   }
 
   validateNumberOfTracks(value: number): number {

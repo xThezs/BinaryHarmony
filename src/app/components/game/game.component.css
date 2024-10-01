@@ -1,34 +1,40 @@
-.game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Hauteur pleine pour centrer verticalement */
-    background-color: rgba(30, 30, 30, 0.9); /* Fond sombre */
+/* Style pour le conteneur principal */
+.container {
+    padding: 20px;
+    background-color: #333; /* Fond sombre */
+    color: #fff; /* Texte clair */
+    border-radius: 8px;
 }
 
-.game-input {
-    width: 80%; /* Prendre une bonne partie de la largeur */
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #ffffff; /* Fond blanc pour le champ de saisie */
-    color: #000; /* Texte noir */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre douce */
+/* Style pour la liste des réponses */
+.answers-list {
+    list-style-type: none; /* Enlève les puces */
+    padding: 0;
 }
 
-button {
-    width: 50%; /* Largeur du bouton */
-    padding: 10px;
-    border-radius: 4px; /* Arrondi pour le bouton */
-    transition: background-color 0.3s, transform 0.2s;
+/* Style pour chaque réponse */
+.answer-item {
+    background-color: #f9f9f9; /* Fond clair pour les réponses */
+    color: #333; /* Texte sombre pour les réponses */
+    padding: 10px 20px; /* Espacement intérieur */
+    margin: 10px 0; /* Espacement entre les éléments */
+    border-radius: 25px; /* Coins arrondis pour une forme ovale */
+    transition: background-color 0.3s; /* Transition pour un effet au survol */
+    display: inline-block; /* Pour que l'élément prenne la taille du contenu */
 }
 
-button:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Effet de survol */
+/* Effet au survol */
+.answer-item:hover {
+    background-color: #e0e0e0; /* Changement de couleur au survol */
+    cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
 }
 
-button:active {
-    transform: scale(0.95); /* Effet de clic */
+.correct-answer {
+    background-color: green;
+    color: white; /* Pour le contraste */
+}
+
+.incorrect-answer {
+    background-color: red;
+    color: white; /* Pour le contraste */
 }
