@@ -6,6 +6,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { CollectionFormComponent } from './components/collection-form/collection-form.component';
 import { CollectionComponent } from './components/collection/collection.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { GameComponent } from './components/game/game.component';
 
 export const routes: Routes = [
     {path : "login",component:LoginComponent},
@@ -14,4 +15,6 @@ export const routes: Routes = [
     {path : "upload",component:UploadComponent},
     {path : "collection",component:CollectionComponent},
     {path : "contact-us",component:ContactComponent},
+    {path : "game",component:GameComponent},
+
 ];

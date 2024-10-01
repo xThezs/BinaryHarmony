@@ -164,6 +164,23 @@ ul {
   background-color: rgba(63, 81, 181, 0.1); /* Couleur de fond au survol */
 }
 
+.edit-button {
+  width: 36px; /* Ajuste à la taille de l'icône */
+  height: 36px; /* Ajuste à la taille de l'icône */
+  padding: 0; /* Enlève le remplissage pour s'ajuster à l'icône */
+  background: #4CAF50; /* Couleur de fond (vous pouvez changer cette couleur) */
+  border-radius: 50%; /* Arrondir pour former un cercle */
+  display: flex; /* Utilise flexbox pour centrer l'icône */
+  justify-content: center; /* Centre l'icône horizontalement */
+  align-items: center; /* Centre l'icône verticalement */
+  transition: background-color 0.3s; /* Animation pour le changement de couleur */
+  margin-right: 10px; /* Espace à droite du bouton d'édition */
+}
+
+.edit-button:hover {
+  background-color: #45a049; /* Couleur de fond au survol */
+}
+
 .play-button {
   width: 36px; /* Ajuste à la taille de l'icône */
   height: 36px; /* Ajuste à la taille de l'icône */
@@ -179,4 +196,30 @@ ul {
 
 .play-button:hover {
   background-color: rgba(63, 81, 181, 0.1); /* Couleur de fond au survol */
+}
+
+.setup-button {
+  margin: 20px auto; /* Centrer le bouton */
+  display: block;
+  width: 100%;
+  background-color: #ff4081; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  border: none;
+  border-radius: 25px; /* Coins arrondis */
+  padding: 10px 0; /* Espacement interne */
+  font-size: 14px; /* Taille de la police */
+  font-weight: bold; /* Gras */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.setup-button:hover {
+  background-color: #e91e63; /* Couleur au survol */
+  transform: translateY(-3px); /* Légère élévation */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ombre au survol */
+}
+
+.setup-button:active {
+  background-color: #c2185b; /* Couleur lors du clic */
+  transform: translateY(-1px); /* Effet de pression */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre réduite */
 }

@@ -1,0 +1,41 @@
+<div class="dialog-header">
+    <h3>Edit Track Characteristics</h3>
+    <button (click)="close()" class="close-button" aria-label="Close">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<!-- Réponses existantes -->
+<ul>
+    <li *ngFor="let characteristic of characteristics" 
+        class="characteristic-item" 
+        [class.removing]="characteristic.isDeleting">
+        <span>{{ characteristic.name }}: {{ characteristic.value || 'No value set' }}</span>
+        <button mat-icon-button 
+                (click)="deleteCharacteristic(characteristic.id)" 
+                class="delete-button">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </li>
+</ul>
+
+<!-- Formulaire pour ajouter une nouvelle caractéristique -->
+<div class="form-row">
+    <mat-form-field appearance="fill" class="value-input">
+        <mat-label>Value</mat-label>
+        <input matInput [(ngModel)]="newValue" placeholder="Enter value" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="characteristic-select">
+        <mat-label>Characteristic</mat-label>
+        <mat-select [(ngModel)]="selectedCharacteristicId">
+            <mat-option *ngFor="let char of allCharacteristics" [value]="char.id">
+                {{ char.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button (click)="addCharacteristic()" color="primary" class="validate-button">
+        <mat-icon>check</mat-icon>
+    </button>
+</div>

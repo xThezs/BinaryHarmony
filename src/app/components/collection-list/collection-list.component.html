@@ -25,12 +25,14 @@
         <!-- Bouton pour ouvrir le formulaire d'upload -->
         <button (click)="openUploadForm()" mat-raised-button color="primary">Upload a Track</button>
 
-
         <ul>
           <li *ngFor="let track of tracks" class="track-item">
             <h3>{{ track.title }}</h3>
+            <button class="edit-button" mat-icon-button (click)="openAnswerForm(track.id)">
+              <mat-icon>edit</mat-icon> <!-- Icône d'édition -->
+            </button>
             <button class="play-button" mat-icon-button (click)="playAudio(track.url)">
-              <mat-icon>play_arrow</mat-icon> <!-- Icône de lecture -->
+              <mat-icon>play_arrow</mat-icon>
             </button>
           </li>
         </ul>
@@ -40,7 +42,17 @@
           <source [src]="currentTrackUrl" type="audio/mpeg">
           Votre navigateur ne supporte pas la lecture audio.
         </audio>
+        <button (click)="openSetupForm()" mat-raised-button color="accent" class="setup-button">
+          Setup Your Game
+        </button>
         <button (click)="returnToCollections()">Return to Collections</button>
+
+        <!-- Formulaire d'édition des caractéristiques -->
+        <app-answer-form 
+          *ngIf="showEditForm" 
+          [trackId]="selectedTrackId" 
+          (characteristicAdded)="fetchTracks()">
+        </app-answer-form>
       </div>
     </div>
   </ng-template>
