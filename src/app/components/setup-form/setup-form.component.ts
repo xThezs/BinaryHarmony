@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TrackService } from '../../services/track/track.service';
 import { Router } from '@angular/router'; // Importer le Router
@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { GameService } from '../../services/game/game.service';
 
 @Component({
   selector: 'app-setup-form',
@@ -29,11 +30,13 @@ export class SetupFormComponent implements OnInit {
   numberOfTracks: number = 1; 
   totalTracks: number = 0; 
 
+
   constructor(
     public dialogRef: MatDialogRef<SetupFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private trackService: TrackService,
-    private router: Router // Injecter le Router
+    private router: Router, // Injecter le Router,
+    private gameService : GameService
   ) {
     this.collectionId = data.collectionId; 
   }
@@ -62,18 +65,16 @@ export class SetupFormComponent implements OnInit {
   }
 
   startGame(): void {
-    const gameData = {
-      collectionId: this.collectionId, // Inclure collectionId dans les données
-      trackDuration: this.trackDuration,
-      pauseDuration: this.pauseDuration,
-      numberOfTracks: this.numberOfTracks
-    };
+    this.gameService.trackDuration = this.trackDuration;
+    this.gameService.pauseDuration = this.pauseDuration;
+    this.gameService.numberOfTracks = this.numberOfTracks;
+
     
     // Fermer le dialogue et passer les données
-    this.dialogRef.close(gameData); 
+    this.dialogRef.close(); 
    
     // Naviguer vers le composant Game avec l'état
-    this.router.navigate(['/game'], { state: gameData });
+    this.router.navigate(['/game']);
   }
 
   close(): void {

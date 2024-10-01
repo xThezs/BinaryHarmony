@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { CollectionService } from '../../services/collection/collection.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { TrackService } from '../../services/track/track.service';
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { SetupFormComponent } from '../setup-form/setup-form.component';
+import { GameService } from '../../services/game/game.service';
 
 @Component({
   selector: 'app-collection-list',
@@ -21,6 +22,8 @@ import { SetupFormComponent } from '../setup-form/setup-form.component';
   styleUrls: ['./collection-list.component.css']
 })
 export class CollectionListComponent implements OnInit {
+  public gameService = inject(GameService);
+
   public collections: Collection[] = [];
   public tracks: Track[] = [];
   public showingTracks: boolean = false;
@@ -83,6 +86,7 @@ export class CollectionListComponent implements OnInit {
 
   openCollectionTracks(collectionId: number): void {
     this.collectionId = collectionId.toString();
+    this.gameService.collectionId = collectionId;
     this.fetchTracks();
     this.showingTracks = true;
     this.collections = [];

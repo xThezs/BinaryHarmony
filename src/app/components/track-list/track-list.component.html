@@ -1,0 +1,12 @@
+<div class="track-list-container">
+    <h2>Pistes de la Collection</h2>
+    <ul *ngIf="tracks.length > 0; else noTracks">
+      <li *ngFor="let track of tracks">
+        <h3>{{ track.title }}</h3>
+        <a [href]="track.url" target="_blank">Écouter</a>
+      </li>
+    </ul>
+    <ng-template #noTracks>
+      <p>Aucune piste trouvée pour cette collection.</p>
+    </ng-template>
+  </div>
