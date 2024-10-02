@@ -1,33 +1,33 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { RouterModule } from '@angular/router'; // Assurez-vous d'importer RouterModule
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule,CommonModule],
+  imports: [CommonModule, RouterModule], // Assurez-vous que RouterModule est ici
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']  // Correction: styleUrls avec 's'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   isAuthenticated: boolean = false;
 
+  constructor(private authService: AuthService, private router: Router) {}
+
   ngOnInit(): void {
+    this.authService.authStatus$.subscribe(status => {
+      this.isAuthenticated = status;
+    });
     this.checkAuthentication();
   }
 
-  // Méthode pour vérifier la présence d'un token
   checkAuthentication(): void {
-    const token = localStorage.getItem('token');
-    this.isAuthenticated = !!token; // Si un token existe, l'utilisateur est connecté
+    this.isAuthenticated = this.authService.isLoggedIn();
   }
 
-  // Méthode pour gérer la déconnexion
   logout(): void {
-    localStorage.removeItem('token'); // Supprimer le token
-    this.isAuthenticated = false; // Mettre à jour l'état d'authentification
-
-    //Option Redirect après logout
-    // this.router.navigate(['/login']); // Rediriger vers la page de login après la déconnexion
+    this.authService.logout();
   }
 }

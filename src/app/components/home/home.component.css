@@ -1,0 +1,13 @@
+:host {
+    position: relative; /* Nécessaire pour positionner les enfants */
+    height: 100vh; /* Assurez-vous que le conteneur occupe toute la hauteur de la page */
+}
+
+app-chat {
+    position: absolute; /* Positionnement absolu */
+    bottom: 20px; /* Marge du bas */
+    right: 20px; /* Marge à droite */
+    width: 300px; /* Fixer la largeur du chat */
+    height: auto; /* Hauteur automatique pour le chat */
+    z-index: 10; /* Pour que le chat soit au-dessus des autres éléments */
+}

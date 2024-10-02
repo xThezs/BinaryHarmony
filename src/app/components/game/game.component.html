@@ -1,14 +1,10 @@
 <app-navbar></app-navbar>
 
-<div *ngIf="isGameStarted" class="container">
-    <ul class="answers-list">
-        <li *ngFor="let answer of currentAnswers" 
-            [ngClass]="{'correct-answer': answer.isCorrect, 'incorrect-answer': answer.isIncorrect}"
-            class="answer-item">
-            {{ answer.name }}
-        </li>
-    </ul>
-
+<div class="input-container">
+    <button *ngIf="!isGameStarted" mat-raised-button (click)="startGame()">Start Game</button>
+    <div *ngIf="isGameStarted" class="score-display" [ngClass]="{'score-change': gameService.gameScore > 0}">
+        Score: {{ gameService.gameScore }}
+    </div>
     <input 
         type="text" 
         [(ngModel)]="gameService.userInput" 
@@ -18,4 +14,20 @@
     />
 </div>
 
-<button mat-raised-button (click)="startGame()">Start Game</button>
+<div *ngIf="isGameStarted" class="container">
+    <ul class="answers-list">
+        <li *ngFor="let answer of currentAnswers" 
+            [ngClass]="{'correct-answer': answer.isCorrect, 'incorrect-answer': answer.isIncorrect}"
+            class="answer-item">
+            {{ answer.name }}
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="showEndGameDialog" class="end-game-dialog">
+    <h2>End Game</h2>
+    <p>Tracks Played: {{ gameService.gameTracks.length }}</p>
+    <p>Your Score: {{ gameService.gameScore }}</p>
+    <button mat-raised-button (click)="playAgain()">Play Again</button>
+    <button mat-raised-button (click)="chooseAnotherCollection()">Choose Another Collection</button>
+</div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TrackService } from '../track/track.service';
 import { Characteristic } from '../../utils/interfaces/characteristic.interface';
 import { Track } from '../../utils/interfaces/track.interface';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,9 @@ export class GameService {
   public gameAnswers: Characteristic[][] = [];
   public currentTrackIndex: number = 0;
   userInput: string = '';
+  public gameScore: number = 0; // Ajout du score
+  public gameEnded: boolean = false; // Indicateur de fin de jeu
+  public gameEnded$ = new Subject<boolean>(); // Subject pour notifier la fin du jeu
 
   constructor(private trackService: TrackService) {}
 
@@ -28,26 +32,26 @@ export class GameService {
       if (this.collectionId === null) {
         return reject(new Error("Collection ID must be set before preparing the game."));
       }
-  
+
       this.trackService.getTracks(this.collectionId.toString()).subscribe((tracks: Track[]) => {
         this.gameTracks = [];
         this.gameAnswers = [];
-  
+
         const availableTracks = [...tracks];
         const numberOfTracks = Math.min(this.numberOfTracks, availableTracks.length);
         const selectedIndexes = new Set<number>();
-  
+
         while (selectedIndexes.size < numberOfTracks) {
           const randomIndex = Math.floor(Math.random() * availableTracks.length);
           selectedIndexes.add(randomIndex);
         }
-  
+
         const characteristicsPromises: Promise<void>[] = [];
-  
+
         selectedIndexes.forEach((index) => {
           const selectedTrack = availableTracks[index];
           this.gameTracks.push(selectedTrack);
-  
+
           const promise = new Promise<void>((res) => {
             this.trackService.getCharacteristics(selectedTrack.id).subscribe((characteristics: Characteristic[]) => {
               if (characteristics && characteristics.length > 0) {
@@ -67,10 +71,10 @@ export class GameService {
               res();
             });
           });
-  
+
           characteristicsPromises.push(promise);
         });
-  
+
         Promise.all(characteristicsPromises)
           .then(() => {
             console.log('Game tracks prepared:', this.gameTracks);
@@ -96,7 +100,7 @@ export class GameService {
           currentAudio.currentTime = startTime;
           currentAudio.play();
 
-          const fadeOutStart = (this.trackDuration * 1000) - 5000;
+          const fadeOutStart = (this.trackDuration * 1000) - 3000;
           setTimeout(() => {
             this.fadeOutAndStop(currentAudio);
           }, fadeOutStart);
@@ -115,8 +119,8 @@ export class GameService {
   private fadeOutAndStop(audio: HTMLAudioElement | null): void {
     if (!audio) return;
 
-    const fadeOutDuration = 5000;
-    const fadeOutSteps = 50;
+    const fadeOutDuration = 3000;
+    const fadeOutSteps = 30;
     const fadeOutInterval = fadeOutDuration / fadeOutSteps;
 
     let currentVolume = audio.volume;
@@ -134,7 +138,6 @@ export class GameService {
     }, fadeOutInterval);
   }
 
-  // Ajoutez une méthode qui joue la piste et passe à la suivante
   async playCurrentTrack(): Promise<void> {
     const track = this.gameTracks[this.currentTrackIndex];
     if (track) {
@@ -150,7 +153,7 @@ export class GameService {
       await this.playCurrentTrack(); // Jouer la nouvelle piste
     } else {
       console.log('Fin du jeu');
-      // Logique pour la fin du jeu si nécessaire
+      this.endGame(); // Appel de la méthode pour gérer la fin du jeu
     }
   }
 
@@ -165,15 +168,37 @@ export class GameService {
     const foundCorrect = currentAnswers.some(answer => 
       answer.value && answer.value.toLowerCase() === userInputLower
     );
-  
+
     if (foundCorrect) {
       currentAnswers.forEach(answer => {
         if (answer.value && answer.value.toLowerCase() === userInputLower) {
-          answer.isCorrect = true;
+          answer.isCorrect = true; // Marquer comme correct
         }
       });
+      this.playAudioFeedback('http://localhost:8090/validate.mp3'); // Jouer le son de validation
+      this.gameScore++; // Incrémenter le score
+    } else {
+      this.playAudioFeedback('http://localhost:8090/error.mp3'); // Jouer le son d'erreur
     }
-  
-    this.userInput = '';
+
+    this.userInput = ''; // Réinitialiser l'input
+  }
+
+  private playAudioFeedback(url: string): void {
+    const audio = new Audio(url);
+    audio.play().catch(error => {
+      console.error('Error playing audio:', error);
+    });
+  }
+
+  endGame(): void {
+    this.gameEnded = true; // Mettre à jour l'état du jeu
+    this.gameEnded$.next(true); // Émettre un événement
+    console.log('Fin du jeu');
+  }
+
+  resetScore(): void {
+    this.gameScore = 0; // Réinitialiser le score
+    this.gameEnded = false;
   }
 }

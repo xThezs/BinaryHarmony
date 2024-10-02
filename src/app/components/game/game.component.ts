@@ -23,10 +23,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class GameComponent implements OnInit {
   isGameStarted: boolean = false; 
-  buttonLabel: string = 'Start Game'; 
   userInput: string = ''; 
   collectionTracks: Track[] = []; 
   placeholder: string = 'Enter your answer and press enter to validate';
+  showEndGameDialog: boolean = false; // Contrôle l'affichage de la fenêtre de fin de jeu
 
   constructor(private router: Router, private trackService: TrackService, public gameService: GameService) {}
 
@@ -44,10 +44,17 @@ export class GameComponent implements OnInit {
         });
       });
     }
+
+    // Abonnez-vous à l'événement de fin de jeu
+    this.gameService.gameEnded$.subscribe(() => {
+      this.endGame(); // Appeler la méthode pour afficher la fenêtre
+    });
   }
 
   async startGame() {
     this.isGameStarted = true; // Démarrer le jeu
+    this.showEndGameDialog = false; // Réinitialiser l'état de la fenêtre de fin de jeu
+    this.gameService.gameEnded = false; // Réinitialiser l'état de fin de jeu
     await this.gameService.prepareGame();
     await this.gameService.playCurrentTrack(); // Jouer la première piste ici
   }
@@ -57,13 +64,27 @@ export class GameComponent implements OnInit {
   }
 
   validateAnswer() {
-    this.gameService.validateInput(); // Appeler la méthode sans assignation
+    this.gameService.validateInput(); 
     const hasCorrectAnswers = this.currentAnswers.some(answer => answer.isCorrect);
 
     if (hasCorrectAnswers) {
-      this.placeholder = 'Enter your answer and press enter to validate'; 
+        this.placeholder = 'Enter your answer and press enter to validate'; 
     } else {
-      this.placeholder = 'Try Again'; 
+        this.placeholder = 'Try Again'; 
     }
+  }
+
+  endGame() {
+    this.showEndGameDialog = true; // Afficher la fenêtre de fin de jeu
+  }
+
+  playAgain() {
+    this.gameService.resetScore(); // Réinitialiser le score
+    this.isGameStarted = false; // Revenir à l'état initial
+    this.showEndGameDialog = false; // Réinitialiser la fenêtre de fin de jeu
+  }
+
+  chooseAnotherCollection() {
+    this.router.navigate(['/collection']); // Rediriger vers la page de collection
   }
 }

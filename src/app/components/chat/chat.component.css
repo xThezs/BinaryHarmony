@@ -1,0 +1,52 @@
+.chatbox {
+    background-color: #1e1e1e; /* Couleur de fond sombre */
+    border: 1px solid #444; /* Bordure légèrement plus claire */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 15px;
+    width: 300px; /* Largeur fixe pour la chatbox */
+    height: 400px; /* Hauteur fixe pour la chatbox */
+    overflow: hidden; /* Masque les débordements */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Ombre portée */
+    display: flex;
+    flex-direction: column; /* Aligne les enfants en colonne */
+}
+
+.messages {
+    flex: 1; /* Prend tout l'espace disponible */
+    overflow-y: auto; /* Ajoute le défilement vertical */
+    margin-bottom: 10px; /* Espacement en bas */
+    padding-right: 5px; /* Ajout d'un peu de padding à droite pour le défilement */
+}
+
+.message {
+    margin: 5px 0; /* Marges entre les messages */
+    color: #e0e0e0; /* Couleur des messages */
+}
+
+.message strong {
+    color: #ffdd57; /* Couleur pour le nom de l'utilisateur */
+}
+
+input {
+    width: 80%; /* Largeur de l'input */
+    padding: 10px; /* Espacement intérieur */
+    border: none; /* Pas de bordure */
+    border-radius: 4px; /* Coins arrondis */
+    margin-right: 5px; /* Espacement entre le champ et le bouton */
+    background-color: #333; /* Fond du champ d'entrée */
+    color: #fff; /* Couleur du texte */
+}
+
+button {
+    width: 15%; /* Largeur du bouton */
+    padding: 10px; /* Espacement intérieur */
+    border: none; /* Pas de bordure */
+    border-radius: 4px; /* Coins arrondis */
+    background-color: #ffdd57; /* Couleur du bouton */
+    color: #1e1e1e; /* Couleur du texte du bouton */
+    cursor: pointer; /* Curseur pointer pour le bouton */
+}
+
+button:hover {
+    background-color: #ffd600; /* Couleur lors du survol */
+}

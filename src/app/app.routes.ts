@@ -7,14 +7,15 @@ import { CollectionFormComponent } from './components/collection-form/collection
 import { CollectionComponent } from './components/collection/collection.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { GameComponent } from './components/game/game.component';
+import { authGuard } from './services/auth/auth.guard';
+import { loggedInGuard } from './services/auth/logged-in.guard';
 
 export const routes: Routes = [
-    {path : "login",component:LoginComponent},
-    {path : "signup",component:SignupComponent},
-    {path : "",component:HomeComponent},
-    {path : "upload",component:UploadComponent},
-    {path : "collection",component:CollectionComponent},
-    {path : "contact-us",component:ContactComponent},
-    {path : "game",component:GameComponent},
-
+    { path: "login", component: LoginComponent, canActivate: [authGuard] },
+    { path: "signup", component: SignupComponent, canActivate: [authGuard] },
+    { path: "", component: HomeComponent ,canActivate:[loggedInGuard]},
+    { path: "upload", component: UploadComponent, canActivate: [loggedInGuard] },
+    { path: "collection", component: CollectionComponent, canActivate: [loggedInGuard] },
+    { path: "contact-us", component: ContactComponent, canActivate: [loggedInGuard] },
+    { path: "game", component: GameComponent, canActivate: [loggedInGuard] },
 ];

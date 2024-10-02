@@ -4,11 +4,14 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const  authService  =  inject(AuthService);
-  const  router  =  inject(Router);
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  
   if (authService.isLoggedIn()) {
-    return true;
+    // Redirige l'utilisateur vers la page d'accueil s'il est déjà connecté
+    router.navigate(['/']);
+    return false;
   }
-  router.navigate(['/login']);
-  return false;
+  return true; // Autorise l'accès si non connecté
 };
+

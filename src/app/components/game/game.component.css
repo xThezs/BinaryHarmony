@@ -1,15 +1,68 @@
+/* Conteneur pour l'input */
+.input-container {
+    display: flex;
+    flex-direction: column; /* Changer la direction en colonne */
+    align-items: center; /* Centrer horizontalement */
+    margin-bottom: 30px; /* Augmenter la marge en bas pour espacer avec le reste */
+}
+
+/* Style pour l'input */
+.answer-input {
+    width: 60%; /* Largeur de 60% */
+    padding: 15px; /* Espacement intérieur */
+    font-size: 18px; /* Taille de la police */
+    border: 2px solid #fff; /* Bordure blanche */
+    border-radius: 25px; /* Coins arrondis */
+    background-color: #444; /* Fond sombre */
+    color: #fff; /* Texte clair */
+    transition: border-color 0.3s, background-color 0.3s; /* Transition pour les effets */
+}
+
+/* Effet au focus */
+.answer-input:focus {
+    outline: none; /* Enlever le contour par défaut */
+    border-color: #ff9800; /* Couleur de la bordure au focus */
+    background-color: #555; /* Couleur de fond au focus */
+}
+
+/* Style pour la zone de score */
+.score-display {
+    font-size: 24px;
+    color: #ff9800; /* Couleur du score */
+    transition: all 0.3s ease; /* Effet de transition */
+    margin: 10px 0; /* Espacement autour de la zone de score */
+    padding: 10px 20px; /* Espacement intérieur */
+    border: 2px solid rgba(255, 152, 0, 0.8); /* Bordure de couleur orange */
+    border-radius: 15px; /* Coins arrondis */
+    background-color: rgba(68, 68, 68, 0.9); /* Fond légèrement transparent */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ombre pour donner de la profondeur */
+}
+
+/* Animation pour le changement de score */
+.score-change {
+    animation: scoreAnimation 0.5s; /* Animation lors du changement de score */
+}
+
+@keyframes scoreAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
 /* Style pour le conteneur principal */
 .container {
     padding: 20px;
-    background-color: #333; /* Fond sombre */
+    background-color: transparent; /* Fond transparent pour laisser voir le background */
     color: #fff; /* Texte clair */
-    border-radius: 8px;
 }
 
 /* Style pour la liste des réponses */
 .answers-list {
     list-style-type: none; /* Enlève les puces */
     padding: 0;
+    display: flex; /* Affiche les réponses sur la même ligne */
+    justify-content: center; /* Centre les réponses */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
 }
 
 /* Style pour chaque réponse */
@@ -17,10 +70,11 @@
     background-color: #f9f9f9; /* Fond clair pour les réponses */
     color: #333; /* Texte sombre pour les réponses */
     padding: 10px 20px; /* Espacement intérieur */
-    margin: 10px 0; /* Espacement entre les éléments */
+    margin: 10px; /* Espacement entre les éléments */
     border-radius: 25px; /* Coins arrondis pour une forme ovale */
     transition: background-color 0.3s; /* Transition pour un effet au survol */
     display: inline-block; /* Pour que l'élément prenne la taille du contenu */
+    border: 2px solid transparent; /* Bordure transparente par défaut */
 }
 
 /* Effet au survol */
@@ -29,6 +83,7 @@
     cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
 }
 
+/* Styles pour les réponses correctes et incorrectes */
 .correct-answer {
     background-color: green;
     color: white; /* Pour le contraste */
@@ -37,4 +92,28 @@
 .incorrect-answer {
     background-color: red;
     color: white; /* Pour le contraste */
+}
+
+/* Style pour le dialogue de fin de jeu */
+.end-game-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #444;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1000; /* Assurez-vous qu'il soit au-dessus des autres éléments */
+}
+
+/* Espacement entre les boutons de fin de jeu */
+.end-game-dialog button {
+    margin: 10px 20px; /* Espace vertical et horizontal entre les boutons */
+}
+
+/* Espacement autour du bouton "Start Game" */
+.input-container button {
+    margin-top: 8px;
+    margin-bottom: 8px; /* Espacement en bas pour le bouton */
 }
