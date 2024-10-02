@@ -1,13 +1,29 @@
 :host {
-    position: relative; /* Nécessaire pour positionner les enfants */
-    height: 100vh; /* Assurez-vous que le conteneur occupe toute la hauteur de la page */
-}
-
-app-chat {
-    position: absolute; /* Positionnement absolu */
-    bottom: 20px; /* Marge du bas */
-    right: 20px; /* Marge à droite */
-    width: 300px; /* Fixer la largeur du chat */
-    height: auto; /* Hauteur automatique pour le chat */
+    display: grid;
+    grid-template-rows: 10vh auto; /* Navbar occupe 10% de la hauteur, le reste est auto */
+    height: 100vh; /* Prend toute la hauteur de la page */
+  }
+  
+  app-navbar {
+    grid-row: 1; /* Place la navbar dans la première ligne */
+  }
+  
+  .main-content {
+    display: grid;
+    grid-template-columns: 4fr 1fr; /* 4/5 pour le contenu principal, 1/5 pour le chat */
+    height: 90vh; /* 90% de la hauteur restante */
+  }
+  
+  .content-area {
+    padding: 20px; /* Espacement pour le contenu principal */
+    overflow-y: auto; /* Permet le défilement si nécessaire */
+  }
+  
+  app-chat {
+    margin: 20px 10px; /* Marge en haut et en bas, et moins de marge à droite */
+    margin-top: 20px; /* Ajouté pour éviter le collage à la navbar */
+    height: calc(100% - 40px); /* Ajuste la hauteur en fonction des marges */
     z-index: 10; /* Pour que le chat soit au-dessus des autres éléments */
-}
+  }
+  
+  

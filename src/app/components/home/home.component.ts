@@ -5,7 +5,7 @@ import { ChatComponent } from '../chat/chat.component'; // Importez le ChatCompo
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, ChatComponent], // Ajoutez ChatComponent ici
+  imports: [NavbarComponent, ChatComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

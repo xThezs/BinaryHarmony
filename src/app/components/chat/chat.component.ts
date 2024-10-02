@@ -33,7 +33,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
   
-
   sendMessage(): void {
     if (this.newMessage.trim()) {
       const userName = this.authService.getUserName(); // Récupérez le nom de l'utilisateur
@@ -49,8 +48,13 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.newMessage = '';
     }
   }
-  
 
+  getColor(user: string): string {
+    const hash = [...user].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const hue = hash % 360; // Obtenir une couleur basée sur le nom
+    return `hsl(${hue}, 70%, 50%)`; // Couleur en HSL
+  }
+  
   ngOnDestroy(): void {
     this.socket.disconnect(); // Déconnectez-vous lorsque le composant est détruit
   }

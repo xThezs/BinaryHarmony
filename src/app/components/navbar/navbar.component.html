@@ -1,45 +1,45 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <!-- Container wrapper -->
-  <div id="navbar" class="container-fluid d-flex flex-row row">
-      <!-- Navbar brand -->
-      <div id="navbar" class="col-1 d-flex">
-          <img id="logo" src="img/logo.png" alt="Logo">
-      </div>
-
-      <!-- Navbar links -->
-      <ul class="col-6 justify-content-between d-flex flex-row">
-          <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
-              <a routerLink="/" href="javascript:void(0)">Home</a>
-          </li>
-          <li [routerLinkActive]="'active'">
-              <a routerLink="/collection" href="javascript:void(0)">Collection</a>
-          </li>
-          <li [routerLinkActive]="'active'">
-            <a href="javascript:void(0)">CGU</a>
-        </li>
-          <li [routerLinkActive]="'active'">
-              <a routerLink="/contact-us" href="javascript:void(0)">Contact-Us</a>
-          </li>
-          
-      </ul>
-
-      <!-- NavBar droite Sign Sign Out Login -->
-      <ul class="nav navbar-nav navbar-right flex-row col-3 justify-content-end">
-          <!-- Si l'utilisateur n'est pas connecté, afficher Sign In et Sign Up -->
-          <div class="auth-buttons d-flex">
-              <li *ngIf="!isAuthenticated">
-                  <a routerLink="/login" href="javascript:void(0)" class="glyphicon glyphicon-user"> Sign In</a>
-              </li>
-              <li *ngIf="!isAuthenticated">
-                  <a routerLink="/signup" href="javascript:void(0)" class="glyphicon glyphicon-user"> Sign Up</a>
-              </li>
-          </div>
-
-          <!-- Si l'utilisateur est connecté, afficher Logout -->
-          <li *ngIf="isAuthenticated">
-              <a href="javascript:void(0)" (click)="logout()" class="glyphicon glyphicon-log-out"> Logout</a>
-          </li>
-      </ul>
-  </div>
-</nav>
+    <!-- Container wrapper -->
+    <div id="navbar" class="container-fluid d-flex flex-row row">
+        <!-- Navbar brand -->
+        <div id="navbar" class="col-1 d-flex">
+            <img id="logo" src="img/logo.png" alt="Logo">
+        </div>
+  
+        <!-- Navbar links -->
+        <ul class="col-6 justify-content-between d-flex flex-row">
+            <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
+                <a routerLink="/" href="javascript:void(0)">Home</a>
+            </li>
+            <li [routerLinkActive]="'active'">
+                <a routerLink="/collection" href="javascript:void(0)">Collection</a>
+            </li>
+            <li [routerLinkActive]="'active'">
+                <a href="http://localhost:8090/CGU.pdf" target="_blank">CGU</a>
+            </li>
+            <li [routerLinkActive]="'active'">
+                <a routerLink="/contact-us" href="javascript:void(0)">Contact-Us</a>
+            </li>
+        </ul>
+  
+        <!-- NavBar droite Sign Sign Out Login -->
+        <ul class="nav navbar-nav navbar-right flex-row col-3 justify-content-end">
+            <!-- Si l'utilisateur n'est pas connecté, afficher Sign In et Sign Up -->
+            <div class="auth-buttons d-flex">
+                <li *ngIf="!isAuthenticated">
+                    <a routerLink="/login" href="javascript:void(0)" class="glyphicon glyphicon-user"> Sign In</a>
+                </li>
+                <li *ngIf="!isAuthenticated">
+                    <a routerLink="/signup" href="javascript:void(0)" class="glyphicon glyphicon-user"> Sign Up</a>
+                </li>
+            </div>
+  
+            <!-- Si l'utilisateur est connecté, afficher Logout -->
+            <li *ngIf="isAuthenticated">
+                <a href="javascript:void(0)" (click)="logout()" class="glyphicon glyphicon-log-out"> Logout</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  

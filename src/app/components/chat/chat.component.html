@@ -1,10 +1,11 @@
 <div class="chatbox">
     <div class="messages">
       <div *ngFor="let msg of messages" class="message">
-        <strong>{{ msg.user }}:</strong> {{ msg.message }} <em>{{ msg.timestamp }}</em>
+        <strong [ngStyle]="{'color': getColor(msg.user)}">{{ msg.user }}:</strong> {{ msg.message }} <em>{{ msg.timestamp }}</em>
       </div>
     </div>
-    <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type your message here..." />
-    <button (click)="sendMessage()">Send</button>
-  </div>
-  
+    <div class="input-container">
+        <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type your message here..." />
+        <button (click)="sendMessage()">Send</button>
+    </div>
+</div>

@@ -3,12 +3,14 @@
     border: 1px solid #444; /* Bordure légèrement plus claire */
     border-radius: 8px; /* Coins arrondis */
     padding: 15px;
-    width: 300px; /* Largeur fixe pour la chatbox */
-    height: 400px; /* Hauteur fixe pour la chatbox */
+    width: 340px; /* Largeur de la chatbox */
+    height: 100%; /* Prend toute la hauteur disponible de son conteneur */
     overflow: hidden; /* Masque les débordements */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Ombre portée */
     display: flex;
     flex-direction: column; /* Aligne les enfants en colonne */
+    margin-right: 5px; /* Réduit le margin-right */
+    margin-top: 20px; /* Ajoute un margin-top pour l'espacement avec la navbar */
 }
 
 .messages {
@@ -27,6 +29,11 @@
     color: #ffdd57; /* Couleur pour le nom de l'utilisateur */
 }
 
+.input-container {
+    display: flex; /* Utiliser flexbox pour aligner l'input et le bouton sur la même ligne */
+    align-items: center; /* Centre verticalement les éléments */
+}
+
 input {
     width: 80%; /* Largeur de l'input */
     padding: 10px; /* Espacement intérieur */
@@ -38,7 +45,7 @@ input {
 }
 
 button {
-    width: 15%; /* Largeur du bouton */
+    width: 20%; /* Ajustez la largeur du bouton si nécessaire */
     padding: 10px; /* Espacement intérieur */
     border: none; /* Pas de bordure */
     border-radius: 4px; /* Coins arrondis */
