@@ -223,3 +223,22 @@ ul {
   transform: translateY(-1px); /* Effet de pression */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre réduite */
 }
+.delete-button {
+  width: 36px; 
+  height: 36px; 
+  padding: 0; 
+  background: #d32f2f; /* Fond rouge */
+  border-radius: 50%; /* Arrondir pour former un cercle */
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  transition: background-color 0.3s ease; 
+}
+
+.delete-button:hover {
+  background-color: #c62828; /* Couleur au survol */
+}
+
+.delete-button mat-icon {
+  color: white; /* Couleur de l'icône */
+}

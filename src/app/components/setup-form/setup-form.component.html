@@ -12,22 +12,22 @@
         type="number" 
         [(ngModel)]="trackDuration" 
         (ngModelChange)="trackDuration = validateTrackDuration($event)" 
-        min="15" 
-        max="30">
+        min="20" 
+        max="35">
     <mat-error *ngIf="trackDuration < 20 || trackDuration > 35">
         Please enter a value between 20 and 35 seconds.
     </mat-error>
 </mat-form-field>
 
 <mat-form-field appearance="outline" class="form-field">
-    <mat-label>Pause Duration Between Tracks (5-20 seconds)</mat-label>
+    <mat-label>Pause Duration Between Tracks (1-10 seconds)</mat-label>
     <input 
         matInput 
         type="number" 
         [(ngModel)]="pauseDuration" 
         (ngModelChange)="pauseDuration = validatePauseDuration($event)" 
-        min="5" 
-        max="20">
+        min="1" 
+        max="10">
     <mat-error *ngIf="pauseDuration < 1 || pauseDuration > 10">
         Please enter a value between 1 and 10 seconds.
     </mat-error>

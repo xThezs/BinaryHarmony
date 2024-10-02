@@ -202,4 +202,40 @@ export class CollectionListComponent implements OnInit {
       }
     }, fadeOutInterval);
   }
+  deleteTrack(trackId: number, collectionId: string | null): void {
+    if (!collectionId) {
+        console.error('Collection ID is required to delete a track.');
+        return;
+    }
+
+    // Vérifier le nombre de pistes restantes
+    this.trackService.getTracks(collectionId).subscribe(
+        (tracks) => {
+            if (tracks.length <= 1) {
+                alert('At least one track must remain in the collection.');
+                return;
+            }
+
+            const confirmDelete = confirm('Are you sure you want to delete this track?');
+            if (confirmDelete) {
+                this.trackService.deleteTrack(trackId, collectionId).subscribe(
+                    () => {
+                        console.log('Track deleted successfully');
+                        this.fetchTracks(); // Met à jour la liste des pistes après la suppression
+                    },
+                    (error) => {
+                        console.error('Error deleting track', error);
+                        alert('An error occurred while deleting the track. Please try again.'); // Alert pour informer l'utilisateur
+                    }
+                );
+            }
+        },
+        (error) => {
+            console.error('Error fetching tracks', error);
+            alert('An error occurred while fetching tracks. Please try again.'); // Gérer l'erreur lors de la récupération des pistes
+        }
+    );
+}
+
+  
 }

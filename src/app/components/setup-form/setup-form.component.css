@@ -3,10 +3,10 @@
     max-width: 500px; 
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(30, 30, 30, 0.95); /* Fond sombre avec opacité */
+    background-color: rgba(255, 255, 255, 0.9); /* Fond clair avec opacité */
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7); /* Ombre douce */
-    color: #e0e0e0; /* Texte clair */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Ombre douce */
+    color: #333; /* Texte plus sombre pour un bon contraste */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -24,8 +24,8 @@
 .setup-header h3 {
     font-size: 1.5rem;
     margin: 0;
-    color: #ffca28; /* Couleur d'accentuation */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Ombre douce pour le texte */
+    color: #000; /* Couleur du titre en noir */
+    text-shadow: none; /* Enlève l'ombre pour le texte */
 }
 
 mat-form-field {
@@ -33,40 +33,11 @@ mat-form-field {
     width: 100%; 
 }
 
-.mat-form-field-label {
-    color: rgba(200, 200, 200, 0.85); /* Étiquette en gris clair */
-    font-size: 1rem; 
-    transition: color 0.2s ease; 
-}
-
-.mat-form-field:hover .mat-form-field-label,
-.mat-form-field.mat-focused .mat-form-field-label {
-    color: #ffffff; /* Couleur blanche au hover et focus */
-}
-
-input.mat-input-element {
-    color: #000000; /* Texte de l'input en noir */
-    background-color: #ffffff; /* Fond blanc pour les inputs */
-    border-radius: 4px; /* Arrondi pour les champs de saisie */
-}
-
-input.mat-input-element:focus {
-    background-color: rgba(255, 255, 255, 0.9); /* Fond au focus */
-}
-
-.mat-form-field-underline {
-    background-color: rgba(255, 255, 255, 0.5); /* Couleur de l'underline moins agressive */
-}
-
-.mat-form-field-underline.mat-focused {
-    background-color: #ffca28; /* Couleur d'accentuation de l'underline au focus */
-}
-
 .start-button {
     width: 100%; 
     margin-top: 10px; 
-    background-color: #ffca28; /* Couleur d'accentuation pour le bouton */
-    color: #ffffff; /* Texte clair */
+    background-color: #4CAF50; /* Couleur d'accentuation */
+    color: white; /* Texte clair */
     transition: background-color 0.3s ease, transform 0.2s ease;
     border: none; /* Pas de bordure */
     border-radius: 4px; /* Arrondi pour le bouton */
@@ -75,11 +46,7 @@ input.mat-input-element:focus {
 }
 
 .start-button:hover {
-    background-color: #ffb74d; /* Couleur au survol plus foncée */
-}
-
-.start-button:active {
-    transform: scale(0.95); /* Effet de clic */
+    background-color: #45a049; /* Couleur au survol */
 }
 
 mat-error {

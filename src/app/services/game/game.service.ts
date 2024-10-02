@@ -20,6 +20,7 @@ export class GameService {
   public gameScore: number = 0; // Ajout du score
   public gameEnded: boolean = false; // Indicateur de fin de jeu
   public gameEnded$ = new Subject<boolean>(); // Subject pour notifier la fin du jeu
+  private trackStartTime: number | null = null; //Démarrage de la track pour l'effet flamme sur answer dans composant Game
 
   constructor(private trackService: TrackService) {}
 
@@ -139,14 +140,18 @@ export class GameService {
   }
 
   async playCurrentTrack(): Promise<void> {
+    this.trackStartTime = Date.now(); // Enregistre le temps de début
     const track = this.gameTracks[this.currentTrackIndex];
     if (track) {
-      console.log('Playing track:', track.url);
-      await this.playAudio(track.url); // Jouer l'audio et attendre la promesse
-      await this.nextTrack(); // Passer à la piste suivante après que l'audio a été joué
+        console.log('Playing track:', track.url);
+        await this.playAudio(track.url); // Jouer l'audio et attendre la promesse
+        await this.nextTrack(); // Passer à la piste suivante après que l'audio a été joué
     }
-  }
+}
 
+  getTrackStartTime(): number | null {
+    return this.trackStartTime;
+  }
   async nextTrack(): Promise<void> {
     if (this.currentTrackIndex < this.gameTracks.length - 1) {
       this.currentTrackIndex++;

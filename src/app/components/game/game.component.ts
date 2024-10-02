@@ -66,13 +66,27 @@ export class GameComponent implements OnInit {
   validateAnswer() {
     this.gameService.validateInput(); 
     const hasCorrectAnswers = this.currentAnswers.some(answer => answer.isCorrect);
-
+    
     if (hasCorrectAnswers) {
+        const trackStartTime = this.gameService.getTrackStartTime();
+        const currentTime = Date.now();
+        
+        // Vérifiez si la piste a commencé depuis moins de 4 secondes
+        if (trackStartTime && (currentTime - trackStartTime < 4000)) {
+            // Ajouter l'effet de flamme
+            this.currentAnswers.forEach(answer => {
+                if (answer.isCorrect) {
+                    answer.hasFlameEffect = true; // Ajouter une propriété pour l'effet de flamme
+                }
+            });
+        }
+        
         this.placeholder = 'Enter your answer and press enter to validate'; 
     } else {
         this.placeholder = 'Try Again'; 
     }
-  }
+}
+
 
   endGame() {
     this.showEndGameDialog = true; // Afficher la fenêtre de fin de jeu

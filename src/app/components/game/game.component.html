@@ -17,9 +17,10 @@
 <div *ngIf="isGameStarted" class="container">
     <ul class="answers-list">
         <li *ngFor="let answer of currentAnswers" 
-            [ngClass]="{'correct-answer': answer.isCorrect, 'incorrect-answer': answer.isIncorrect}"
+            [ngClass]="{'correct-answer': answer.isCorrect, 'incorrect-answer': answer.isIncorrect, 'flame-effect': answer.hasFlameEffect}"
             class="answer-item">
             {{ answer.name }}
+            <div *ngIf="answer.hasFlameEffect" class="flame"></div>
         </li>
     </ul>
 </div>

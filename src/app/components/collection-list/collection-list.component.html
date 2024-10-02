@@ -31,10 +31,13 @@
             <button class="edit-button" mat-icon-button (click)="openAnswerForm(track.id)">
               <mat-icon>edit</mat-icon> <!-- Icône d'édition -->
             </button>
+            <button class="delete-button" mat-icon-button (click)="deleteTrack(track.id, collectionId)">
+              <mat-icon>delete</mat-icon> <!-- Icône de suppression -->
+            </button>
             <button class="play-button" mat-icon-button (click)="playAudio(track.url)">
               <mat-icon>play_arrow</mat-icon>
             </button>
-          </li>
+          </li>     
         </ul>
         
         <!-- Balise audio pour jouer les fichiers, cachée avec CSS -->

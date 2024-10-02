@@ -17,6 +17,56 @@
   .content-area {
     padding: 20px; /* Espacement pour le contenu principal */
     overflow-y: auto; /* Permet le défilement si nécessaire */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .welcome-text {
+    max-width: 600px; /* Limite la largeur du texte pour une meilleure lisibilité */
+    margin-bottom: 30px;
+  }
+  
+  .welcome-text h1 {
+    font-size: 2.5em;
+    color: #ffffff; /* Couleur blanche pour un bon contraste */
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre pour le titre */
+  }
+  
+  .welcome-text p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #ffffff; /* Couleur blanche pour le texte */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Ombre pour le texte */
+  }
+  
+  .interactive-area {
+    margin-top: 30px;
+  }
+  
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espace entre les icônes */
+  }
+  
+  .icon {
+    font-size: 60px; /* Taille des icônes */
+    color: #6200ea; /* Couleur des icônes */
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+  }
+  
+  .icon:hover {
+    transform: scale(1.1); /* Agrandissement au survol */
+    color: #3700b3; /* Couleur au survol */
+  }
+  
+  .icon:active {
+    transform: scale(0.9); /* Réduction au clic */
   }
   
   app-chat {
@@ -25,5 +75,4 @@
     height: calc(100% - 40px); /* Ajuste la hauteur en fonction des marges */
     z-index: 10; /* Pour que le chat soit au-dessus des autres éléments */
   }
-  
   

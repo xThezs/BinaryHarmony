@@ -4,5 +4,6 @@ export interface Characteristic {
     value: string;
     isCorrect?: boolean; // Ajouté pour indiquer si la réponse est correcte
     isIncorrect?: boolean; // Ajouté pour indiquer si la réponse est incorrecte
+    hasFlameEffect?: boolean;
   }
   

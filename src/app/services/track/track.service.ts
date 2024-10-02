@@ -34,4 +34,9 @@ export class TrackService {
     const body = { trackId, characteristicId };
     return this.http.delete('http://localhost:3030/answer', { body });
   }
+  deleteTrack(trackId: number, collectionId: string): Observable<any> {
+    const body = { trackId, collectionId };
+    return this.http.delete(`${this.apiUrl}/delete`, { body });
+}
+  
 }
