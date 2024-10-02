@@ -1,7 +1,7 @@
 import { Component, inject, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TrackService } from '../../services/track/track.service';
-import { Router } from '@angular/router'; // Importer le Router
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'; 
 import { MatIconModule } from '@angular/material/icon';
@@ -12,14 +12,7 @@ import { GameService } from '../../services/game/game.service';
 @Component({
   selector: 'app-setup-form',
   standalone: true,
-  imports: [
-    CommonModule, 
-    ReactiveFormsModule,
-    FormsModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
+  imports:[MatInputModule,MatFormFieldModule,MatIconModule,CommonModule,ReactiveFormsModule,FormsModule],
   templateUrl: './setup-form.component.html',
   styleUrls: ['./setup-form.component.css']
 })
@@ -30,15 +23,14 @@ export class SetupFormComponent implements OnInit {
   numberOfTracks: number = 1; 
   totalTracks: number = 0; 
 
+  public dialogRef = inject(MatDialogRef<SetupFormComponent>);
+  public data = inject(MAT_DIALOG_DATA);
+  private trackService = inject(TrackService);
+  private router = inject(Router);
+  private gameService = inject(GameService);
 
-  constructor(
-    public dialogRef: MatDialogRef<SetupFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private trackService: TrackService,
-    private router: Router, // Injecter le Router,
-    private gameService : GameService
-  ) {
-    this.collectionId = data.collectionId; 
+  constructor() {
+    this.collectionId = this.data.collectionId; 
   }
 
   ngOnInit(): void {
@@ -69,11 +61,7 @@ export class SetupFormComponent implements OnInit {
     this.gameService.pauseDuration = this.pauseDuration;
     this.gameService.numberOfTracks = this.numberOfTracks;
 
-    
-    // Fermer le dialogue et passer les données
     this.dialogRef.close(); 
-   
-    // Naviguer vers le composant Game avec l'état
     this.router.navigate(['/game']);
   }
 

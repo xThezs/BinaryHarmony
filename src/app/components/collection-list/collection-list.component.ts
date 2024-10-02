@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core'
 import { CollectionService } from '../../services/collection/collection.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { TrackService } from '../../services/track/track.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CollectionFormComponent } from '../collection-form/collection-form.component';
 import { UploadFormComponent } from '../upload-form/upload-form.component';
-import { AnswerFormComponent } from '../answer-form/answer-form.component'; // Import du nouveau composant
+import { AnswerFormComponent } from '../answer-form/answer-form.component';
 import { Collection } from '../../utils/interfaces/collection.interface';
-import { Track } from '../../utils/interfaces/track.interface'; 
+import { Track } from '../../utils/interfaces/track.interface';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
@@ -17,12 +17,13 @@ import { GameService } from '../../services/game/game.service';
 @Component({
   selector: 'app-collection-list',
   standalone: true,
-  imports: [CommonModule, MatIconModule, FormsModule, AnswerFormComponent],
+  imports: [CommonModule, MatIconModule, FormsModule, MatDialogModule, AnswerFormComponent],
   templateUrl: './collection-list.component.html',
   styleUrls: ['./collection-list.component.css']
 })
 export class CollectionListComponent implements OnInit {
   public gameService = inject(GameService);
+  public dialog = inject(MatDialog); // Injection de MatDialog ici
 
   public collections: Collection[] = [];
   public tracks: Track[] = [];
@@ -37,8 +38,7 @@ export class CollectionListComponent implements OnInit {
   constructor(
     private collectionService: CollectionService,
     private authService: AuthService,
-    private trackService: TrackService,
-    public dialog: MatDialog
+    private trackService: TrackService
   ) {}
 
   ngOnInit(): void {
