@@ -1,0 +1,122 @@
+:host {
+    display: block;
+    max-width: 500px; 
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(30, 30, 30, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-button {
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    color: #999; 
+    padding: 0; 
+    margin: 0; 
+    outline: none;
+}
+
+.close-button:hover {
+    color: red; 
+}
+
+h3 {
+    font-size: 1.5rem; 
+    margin: 0; 
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.form-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px; 
+}
+
+.value-input {
+    flex: 2; 
+}
+
+.characteristic-select {
+    flex: 1; 
+}
+
+mat-form-field {
+    margin-bottom: 15px; 
+}
+
+.validate-button {
+    flex: 0 0 auto; 
+    height: 56px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white; 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 4px; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+    cursor: pointer; 
+}
+
+.validate-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+}
+
+.validate-button:active {
+    transform: scale(0.95); 
+}
+
+.characteristic-item {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 5px; 
+    margin-bottom: 5px; 
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transition douce */
+}
+
+.characteristic-item.removing {
+    opacity: 0; /* Fait disparaître l'élément */
+    transform: scale(0.95); /* Réduit légèrement l'élément */
+}
+
+.delete-button {
+    width: 30px; 
+    height: 30px; 
+    padding: 0; 
+    background: none; 
+    color: white; 
+    border: none; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    transition: color 0.3s ease; 
+}
+
+.delete-button:hover {
+    background-color: rgb(184, 40, 40); 
+}
+
+.delete-button mat-icon {
+    font-size: 20px; 
+}

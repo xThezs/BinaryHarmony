@@ -1,11 +1,67 @@
-<div *ngIf="collections.length > 0; else noCollections">
-    <h2>Mes Collections</h2>
-    <ul>
-      <li *ngFor="let collection of collections">
-        {{ collection.name }} - {{ collection.public ? 'Public' : 'Privé' }}
-      </li>
-    </ul>
+<div class="collection-list gradient-custom">
+  <div *ngIf="!showingTracks; else trackList" @fadeInOut>
+    <div class="content">
+      <h2 *ngIf="!showingTracks">My Collections</h2>
+      <button (click)="openCollectionForm()" mat-raised-button color="primary">Create a New Collection</button>
+      <ul>
+        <li *ngFor="let collection of collections" (click)="openCollectionTracks(collection.id)" class="collection-item">
+          <div class="collection-info">
+            <span class="collection-name">{{ collection.name }}</span>
+            <span class="collection-public">{{ collection.public ? 'Public' : 'Private' }}</span>
+            <button (click)="deleteCollection(collection.id)" mat-icon-button color="warn" aria-label="Delete Collection" class="delete-button">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <ng-template #noCollections>
-    <p>Aucune collection trouvée.</p>
+
+  <ng-template #trackList>
+    <div @fadeInOut>
+      <div class="content">
+        <h2 *ngIf="showingTracks">My Tracks</h2>
+
+        <button (click)="openUploadForm()" mat-raised-button color="primary">Upload a Track</button>
+
+        <ul>
+          <li *ngFor="let track of tracks" class="track-item">
+            <div class="track-info">
+              <h3 class="track-title">{{ track.title }}</h3>
+              <div class="track-controls">
+                <button class="edit-button" mat-icon-button (click)="openAnswerForm(track.id)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button class="delete-button" mat-icon-button (click)="deleteTrack(track.id, collectionId)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <button class="play-button" mat-icon-button (click)="playAudio(track.url)">
+                  <mat-icon>play_arrow</mat-icon>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+        
+        <audio #audioPlayer class="hidden-audio" controls>
+          <source [src]="currentTrackUrl" type="audio/mpeg">
+          Votre navigateur ne supporte pas la lecture audio.
+        </audio>
+        <button (click)="openSetupForm()" mat-raised-button color="accent" class="setup-button">
+          Setup Your Game
+        </button>
+        <button (click)="returnToCollections()">Return to Collections</button>
+
+        <app-answer-form 
+          *ngIf="showEditForm" 
+          [trackId]="selectedTrackId" 
+          (characteristicAdded)="fetchTracks()">
+        </app-answer-form>
+      </div>
+    </div>
   </ng-template>
+
+  <ng-template #noCollections>
+    <p class="error-message">No collections found.</p>
+  </ng-template>
+</div>

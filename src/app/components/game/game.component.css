@@ -1,0 +1,184 @@
+/* Conteneur pour l'input */
+.input-container {
+    display: flex;
+    flex-direction: column; /* Changer la direction en colonne */
+    align-items: center; /* Centrer horizontalement */
+    margin-bottom: 30px; /* Augmenter la marge en bas pour espacer avec le reste */
+}
+
+/* Style pour l'input */
+.answer-input {
+    width: 60%; /* Largeur de 60% */
+    padding: 15px; /* Espacement intérieur */
+    font-size: 18px; /* Taille de la police */
+    border: 2px solid #fff; /* Bordure blanche */
+    border-radius: 25px; /* Coins arrondis */
+    background-color: #444; /* Fond sombre */
+    color: #fff; /* Texte clair */
+    transition: border-color 0.3s, background-color 0.3s; /* Transition pour les effets */
+}
+
+/* Effet au focus */
+.answer-input:focus {
+    outline: none; /* Enlever le contour par défaut */
+    border-color: #ff9800; /* Couleur de la bordure au focus */
+    background-color: #555; /* Couleur de fond au focus */
+}
+
+/* Style pour la zone de score */
+.score-display {
+    font-size: 24px;
+    color: #ff9800; /* Couleur du score */
+    transition: all 0.3s ease; /* Effet de transition */
+    margin: 10px 0; /* Espacement autour de la zone de score */
+    padding: 10px 20px; /* Espacement intérieur */
+    border: 2px solid rgba(255, 152, 0, 0.8); /* Bordure de couleur orange */
+    border-radius: 15px; /* Coins arrondis */
+    background-color: rgba(68, 68, 68, 0.9); /* Fond légèrement transparent */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ombre pour donner de la profondeur */
+}
+
+/* Animation pour le changement de score */
+.score-change {
+    animation: scoreAnimation 0.5s; /* Animation lors du changement de score */
+}
+
+@keyframes scoreAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Style pour le conteneur principal */
+.container {
+    padding: 20px;
+    background-color: transparent; /* Fond transparent pour laisser voir le background */
+    color: #fff; /* Texte clair */
+}
+
+/* Style pour la liste des réponses */
+.answers-list {
+    list-style-type: none; /* Enlève les puces */
+    padding: 0;
+    display: flex; /* Affiche les réponses sur la même ligne */
+    justify-content: center; /* Centre les réponses */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+}
+
+/* Style pour chaque réponse */
+.answer-item {
+    background-color: #f9f9f9; /* Fond clair pour les réponses */
+    color: #333; /* Texte sombre pour les réponses */
+    padding: 10px 20px; /* Espacement intérieur */
+    margin: 10px; /* Espacement entre les éléments */
+    border-radius: 25px; /* Coins arrondis pour une forme ovale */
+    transition: background-color 0.3s; /* Transition pour un effet au survol */
+    display: inline-block; /* Pour que l'élément prenne la taille du contenu */
+    border: 2px solid transparent; /* Bordure transparente par défaut */
+}
+
+/* Effet au survol */
+.answer-item:hover {
+    background-color: #e0e0e0; /* Changement de couleur au survol */
+    cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
+}
+
+/* Styles pour les réponses correctes et incorrectes */
+.correct-answer {
+    background-color: green;
+    color: white; /* Pour le contraste */
+}
+
+.incorrect-answer {
+    background-color: red;
+    color: white; /* Pour le contraste */
+}
+
+/* Style pour le dialogue de fin de jeu */
+.end-game-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #444;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1000; /* Assurez-vous qu'il soit au-dessus des autres éléments */
+}
+
+/* Espacement entre les boutons de fin de jeu */
+.end-game-dialog button {
+    margin: 10px 20px; /* Espace vertical et horizontal entre les boutons */
+}
+
+/* Espacement autour du bouton "Start Game" */
+.input-container button {
+    margin-top: 8px;
+    margin-bottom: 8px; /* Espacement en bas pour le bouton */
+}
+
+@keyframes flame {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.flame-effect {
+    position: relative;
+    animation: flame 1s infinite;
+    z-index: 1;
+}
+
+.flame {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 165, 0, 1) 0%, rgba(255, 0, 0, 1) 100%);
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: flame 0.5s infinite alternate;
+}
+
+.paused-answers {
+    position: fixed; /* Position fixe pour le centrer */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajustement pour centrer parfaitement */
+    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
+    color: #ffffff; /* Texte blanc */
+    padding: 20px 30px; /* Espacement intérieur */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Ombre pour profondeur */
+    z-index: 1000; /* Pour s'assurer qu'il est au-dessus des autres éléments */
+    text-align: center; /* Centrer le texte */
+    width: 80%; /* Largeur pour s'adapter à l'écran */
+    max-width: 400px; /* Largeur maximale pour le contenu */
+}
+
+.paused-answers h3 {
+    margin-bottom: 15px; /* Espacement en bas du titre */
+    font-size: 24px; /* Taille du texte du titre */
+    font-weight: bold; /* Gras pour le titre */
+}
+
+.paused-answers ul {
+    list-style-type: none; /* Enlever les puces de la liste */
+    padding: 0; /* Enlever le padding par défaut */
+}
+
+.paused-answers li {
+    margin: 10px 0; /* Espacement entre les éléments de la liste */
+    padding: 10px; /* Espacement intérieur pour les éléments */
+    background-color: rgba(255, 255, 255, 0.1); /* Fond légèrement transparent pour les éléments */
+    border-radius: 5px; /* Coins arrondis pour les éléments */
+    transition: background-color 0.3s; /* Transition pour un effet au survol */
+}
+
+.paused-answers li:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Changement de fond au survol */
+}

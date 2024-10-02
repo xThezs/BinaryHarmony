@@ -1,0 +1,50 @@
+<div class="setup-header">
+    <h3>Setup Your Game</h3>
+    <button (click)="close()" mat-icon-button aria-label="Close">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<mat-form-field appearance="outline" class="form-field">
+    <mat-label>Track Duration (20-35 seconds)</mat-label>
+    <input 
+        matInput 
+        type="number" 
+        [(ngModel)]="trackDuration" 
+        (ngModelChange)="trackDuration = validateTrackDuration($event)" 
+        min="20" 
+        max="45">
+    <mat-error *ngIf="trackDuration < 20 || trackDuration > 45">
+        Please enter a value between 20 and 45 seconds.
+    </mat-error>
+</mat-form-field>
+
+<mat-form-field appearance="outline" class="form-field">
+    <mat-label>Pause Duration Between Tracks (6-20 seconds)</mat-label>
+    <input 
+        matInput 
+        type="number" 
+        [(ngModel)]="pauseDuration" 
+        (ngModelChange)="pauseDuration = validatePauseDuration($event)" 
+        min="6" 
+        max="20">
+    <mat-error *ngIf="pauseDuration < 6 || pauseDuration > 20">
+        Please enter a value between 6 and 20 seconds.
+    </mat-error>
+</mat-form-field>
+
+<mat-form-field appearance="outline" class="form-field">
+    <mat-label>Number of Tracks (1-{{ totalTracks }})</mat-label>
+    <input 
+        matInput 
+        type="number" 
+        [(ngModel)]="numberOfTracks" 
+        (ngModelChange)="numberOfTracks = validateNumberOfTracks($event)" 
+        min="1" 
+        [max]="totalTracks">
+    <mat-error *ngIf="numberOfTracks < 1 || numberOfTracks > totalTracks">
+        Please enter a value between 1 and {{ totalTracks }}.
+    </mat-error>
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="startGame()" class="start-button">Start Game</button>

@@ -49,3 +49,7 @@ a {
 a:hover {
     color: #ffcc00; /* Couleur au survol */
 }
+
+.text-danger {
+    color: red; /* Couleur rouge pour les messages d'erreur */
+}
