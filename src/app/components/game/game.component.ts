@@ -47,18 +47,18 @@ export class GameComponent implements OnInit {
       });
     }
 
-    // Abonnez-vous à l'événement de fin de jeu
+    // Abonnement à l'événement de fin de jeu
     this.gameService.gameEnded$.subscribe(() => {
-      this.endGame(); // Appeler la méthode pour afficher la fenêtre
+      this.endGame(); 
     });
   }
 
   async startGame() {
-    this.isGameStarted = true; // Démarrer le jeu
-    this.showEndGameDialog = false; // Réinitialiser l'état de la fenêtre de fin de jeu
-    this.gameService.gameEnded = false; // Réinitialiser l'état de fin de jeu
+    this.isGameStarted = true; // Game Start
+    this.showEndGameDialog = false; // Reset EndGameDialog
+    this.gameService.gameEnded = false; // Reset gameEnded Status
     await this.gameService.prepareGame();
-    await this.gameService.playCurrentTrack(); // Jouer la première piste ici
+    await this.gameService.playCurrentTrack(); // Play first track
   }
 
   get currentAnswers(): Characteristic[] {

@@ -81,58 +81,7 @@ export class GameService {
     });
   }
 
-  playAudio(url: string): Promise<void> {
-    return new Promise((resolve) => {
-      const currentAudio = new Audio(url);
-      currentAudio.load();
-
-      currentAudio.addEventListener('loadedmetadata', () => {
-        const duration = currentAudio.duration;
-
-        if (duration && duration > this.trackDuration) {
-          const maxStart = duration - this.trackDuration;
-          const startTime = Math.random() * maxStart;
-
-          currentAudio.currentTime = startTime;
-          currentAudio.play();
-
-          const fadeOutStart = (this.trackDuration * 1000) - 3000;
-          setTimeout(() => {
-            this.fadeOutAndStop(currentAudio);
-          }, fadeOutStart);
-
-          setTimeout(() => {
-            resolve(); // Résoudre la promesse après la pause
-          }, (this.trackDuration + this.pauseDuration) * 1000);
-        } else {
-          console.log("Track too short");
-          resolve(); // Résoudre immédiatement pour les pistes trop courtes
-        }
-      });
-    });
-  }
-
-  private fadeOutAndStop(audio: HTMLAudioElement | null): void {
-    if (!audio) return;
-
-    const fadeOutDuration = 3000;
-    const fadeOutSteps = 30;
-    const fadeOutInterval = fadeOutDuration / fadeOutSteps;
-
-    let currentVolume = audio.volume;
-    const decrement = currentVolume / fadeOutSteps;
-
-    const fadeOut = setInterval(() => {
-      if (currentVolume > 0) {
-        currentVolume = Math.max(0, currentVolume - decrement);
-        audio.volume = currentVolume;
-      } else {
-        clearInterval(fadeOut);
-        audio.pause();
-        audio.currentTime = 0;
-      }
-    }, fadeOutInterval);
-  }
+ 
 
   async playCurrentTrack(): Promise<void> {
     this.trackStartTime = Date.now(); // Enregistre le temps de début
@@ -190,6 +139,59 @@ export class GameService {
     audio.play().catch(error => {
       console.error('Error playing audio:', error);
     });
+  }
+
+  playAudio(url: string): Promise<void> {
+    return new Promise((resolve) => {
+      const currentAudio = new Audio(url);
+      currentAudio.load();
+
+      currentAudio.addEventListener('loadedmetadata', () => {
+        const duration = currentAudio.duration;
+
+        if (duration && duration > this.trackDuration) {
+          const maxStart = duration - this.trackDuration;
+          const startTime = Math.random() * maxStart;
+
+          currentAudio.currentTime = startTime;
+          currentAudio.play();
+
+          const fadeOutStart = (this.trackDuration * 1000) - 3000;
+          setTimeout(() => {
+            this.fadeOutAndStop(currentAudio);
+          }, fadeOutStart);
+
+          setTimeout(() => {
+            resolve(); // Résoudre la promesse après la pause
+          }, (this.trackDuration + this.pauseDuration) * 1000);
+        } else {
+          console.log("Track too short");
+          resolve(); // Résoudre immédiatement pour les pistes trop courtes
+        }
+      });
+    });
+  }
+
+  private fadeOutAndStop(audio: HTMLAudioElement | null): void {
+    if (!audio) return;
+
+    const fadeOutDuration = 3000;
+    const fadeOutSteps = 30;
+    const fadeOutInterval = fadeOutDuration / fadeOutSteps;
+
+    let currentVolume = audio.volume;
+    const decrement = currentVolume / fadeOutSteps;
+
+    const fadeOut = setInterval(() => {
+      if (currentVolume > 0) {
+        currentVolume = Math.max(0, currentVolume - decrement);
+        audio.volume = currentVolume;
+      } else {
+        clearInterval(fadeOut);
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }, fadeOutInterval);
   }
 
   endGame(): void {
