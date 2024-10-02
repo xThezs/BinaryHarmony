@@ -56,19 +56,14 @@ export class GameService {
           const promise = new Promise<void>((res) => {
             this.trackService.getCharacteristics(selectedTrack.id).subscribe((characteristics: Characteristic[]) => {
               if (characteristics && characteristics.length > 0) {
-                this.gameAnswers.push(characteristics.map(characteristic => ({
-                  id: characteristic.id || 0,
-                  name: characteristic.name || 'Unknown',
-                  value: characteristic.value || '',
-                  isCorrect: false,
-                  isIncorrect: false
-                })));
+                this.gameAnswers.push(characteristics);
               } else {
-                this.gameAnswers.push([]);
+                this.gameAnswers.push([]); // Ajouter tableau vide si pas de caractéristiques
               }
               res();
             }, (err) => {
               console.error(`Error fetching characteristics for track ${selectedTrack.id}:`, err);
+              this.gameAnswers.push([]); // Ajouter tableau vide en cas d'erreur
               res();
             });
           });
@@ -111,7 +106,7 @@ export class GameService {
           }, (this.trackDuration + this.pauseDuration) * 1000);
         } else {
           console.log("Track too short");
-          resolve();
+          resolve(); // Résoudre immédiatement pour les pistes trop courtes
         }
       });
     });
@@ -143,15 +138,16 @@ export class GameService {
     this.trackStartTime = Date.now(); // Enregistre le temps de début
     const track = this.gameTracks[this.currentTrackIndex];
     if (track) {
-        console.log('Playing track:', track.url);
-        await this.playAudio(track.url); // Jouer l'audio et attendre la promesse
-        await this.nextTrack(); // Passer à la piste suivante après que l'audio a été joué
+      console.log('Playing track:', track.url);
+      await this.playAudio(track.url); // Jouer l'audio et attendre la promesse
+      await this.nextTrack(); // Passer à la piste suivante après que l'audio a été joué
     }
-}
+  }
 
   getTrackStartTime(): number | null {
     return this.trackStartTime;
   }
+
   async nextTrack(): Promise<void> {
     if (this.currentTrackIndex < this.gameTracks.length - 1) {
       this.currentTrackIndex++;

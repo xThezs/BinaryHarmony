@@ -64,8 +64,13 @@ export class AuthService {
   getUserName(): string {
     const token = localStorage.getItem('token');
     if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.name;
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.name;
+      } catch (error) {
+        console.error('Invalid token:', error);
+        return 'Invalid token';
+      }
     }
     return 'No token';
   }

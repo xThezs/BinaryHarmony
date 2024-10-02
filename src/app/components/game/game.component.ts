@@ -8,6 +8,7 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { GameService } from '../../services/game/game.service';
 import { TrackService } from '../../services/track/track.service';
 import { FormsModule } from '@angular/forms';
+import { SetupFormComponent } from "../setup-form/setup-form.component";
 
 @Component({
   selector: 'app-game',
@@ -16,8 +17,9 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     MatButtonModule,
     NavbarComponent,
-    FormsModule
-  ],
+    FormsModule,
+    SetupFormComponent
+],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
