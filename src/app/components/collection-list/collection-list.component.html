@@ -6,7 +6,7 @@
       <ul>
         <li *ngFor="let collection of collections" (click)="openCollectionTracks(collection.id)" class="collection-item">
           <div class="collection-info">
-            <h3>{{ collection.name }}</h3>
+            <span class="collection-name">{{ collection.name }}</span>
             <span class="collection-public">{{ collection.public ? 'Public' : 'Private' }}</span>
             <button (click)="deleteCollection(collection.id)" mat-icon-button color="warn" aria-label="Delete Collection" class="delete-button">
               <mat-icon>delete</mat-icon>
@@ -22,25 +22,27 @@
       <div class="content">
         <h2 *ngIf="showingTracks">My Tracks</h2>
 
-        <!-- Bouton pour ouvrir le formulaire d'upload -->
         <button (click)="openUploadForm()" mat-raised-button color="primary">Upload a Track</button>
 
         <ul>
           <li *ngFor="let track of tracks" class="track-item">
-            <h3>{{ track.title }}</h3>
-            <button class="edit-button" mat-icon-button (click)="openAnswerForm(track.id)">
-              <mat-icon>edit</mat-icon> <!-- Icône d'édition -->
-            </button>
-            <button class="delete-button" mat-icon-button (click)="deleteTrack(track.id, collectionId)">
-              <mat-icon>delete</mat-icon> <!-- Icône de suppression -->
-            </button>
-            <button class="play-button" mat-icon-button (click)="playAudio(track.url)">
-              <mat-icon>play_arrow</mat-icon>
-            </button>
-          </li>     
+            <div class="track-info">
+              <h3 class="track-title">{{ track.title }}</h3>
+              <div class="track-controls">
+                <button class="edit-button" mat-icon-button (click)="openAnswerForm(track.id)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button class="delete-button" mat-icon-button (click)="deleteTrack(track.id, collectionId)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <button class="play-button" mat-icon-button (click)="playAudio(track.url)">
+                  <mat-icon>play_arrow</mat-icon>
+                </button>
+              </div>
+            </div>
+          </li>
         </ul>
         
-        <!-- Balise audio pour jouer les fichiers, cachée avec CSS -->
         <audio #audioPlayer class="hidden-audio" controls>
           <source [src]="currentTrackUrl" type="audio/mpeg">
           Votre navigateur ne supporte pas la lecture audio.
@@ -50,7 +52,6 @@
         </button>
         <button (click)="returnToCollections()">Return to Collections</button>
 
-        <!-- Formulaire d'édition des caractéristiques -->
         <app-answer-form 
           *ngIf="showEditForm" 
           [trackId]="selectedTrackId" 

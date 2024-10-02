@@ -66,6 +66,8 @@ export class GameComponent implements OnInit {
   }
 
   validateAnswer() {
+    
+    if (this.gameService.gameIsPaused === true) return; // Ne rien faire si le jeu est en pause
     this.gameService.validateInput(); 
     const hasCorrectAnswers = this.currentAnswers.some(answer => answer.isCorrect);
     

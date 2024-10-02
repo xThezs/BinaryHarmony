@@ -34,3 +34,13 @@
     <button mat-raised-button (click)="playAgain()">Play Again</button>
     <button mat-raised-button (click)="chooseAnotherCollection()">Choose Another Collection</button>
 </div>
+
+<div *ngIf="gameService.gameIsPaused" class="paused-answers">
+    <h3>Answers:</h3>
+    <ul>
+        <li *ngFor="let answer of currentAnswers">
+            {{ answer.name }}: {{ answer.value }}
+        </li>
+    </ul>
+</div>
+

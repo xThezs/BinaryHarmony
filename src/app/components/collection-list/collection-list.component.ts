@@ -202,6 +202,7 @@ export class CollectionListComponent implements OnInit {
       }
     }, fadeOutInterval);
   }
+
   deleteTrack(trackId: number, collectionId: string | null): void {
     if (!collectionId) {
         console.error('Collection ID is required to delete a track.');
@@ -236,6 +237,4 @@ export class CollectionListComponent implements OnInit {
         }
     );
 }
-
-  
 }

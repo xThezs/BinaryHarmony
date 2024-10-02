@@ -26,7 +26,7 @@ import { GameService } from '../../services/game/game.service';
 export class SetupFormComponent implements OnInit {
   collectionId: string | null;
   trackDuration: number = 20; 
-  pauseDuration: number = 1; 
+  pauseDuration: number = 6; 
   numberOfTracks: number = 1; 
   totalTracks: number = 0; 
 
@@ -53,11 +53,11 @@ export class SetupFormComponent implements OnInit {
   }
 
   validateTrackDuration(value: number): number {
-    return Math.max(20, Math.min(35, value));
+    return Math.max(20, Math.min(45, value));
   }
 
   validatePauseDuration(value: number): number {
-    return Math.max(1, Math.min(10, value));
+    return Math.max(6, Math.min(20, value));
   }
 
   validateNumberOfTracks(value: number): number {

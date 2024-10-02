@@ -18,6 +18,7 @@ export class GameService {
   public currentTrackIndex: number = 0;
   userInput: string = '';
   public gameScore: number = 0; // Ajout du score
+  public gameIsPaused: boolean = false; // Indicateur de pause du jeu
   public gameEnded: boolean = false; // Indicateur de fin de jeu
   public gameEnded$ = new Subject<boolean>(); // Subject pour notifier la fin du jeu
   private trackStartTime: number | null = null; //Démarrage de la track pour l'effet flamme sur answer dans composant Game
@@ -89,6 +90,7 @@ export class GameService {
     if (track) {
       console.log('Playing track:', track.url);
       await this.playAudio(track.url); // Jouer l'audio et attendre la promesse
+      await this.timeBreak();
       await this.nextTrack(); // Passer à la piste suivante après que l'audio a été joué
     }
   }
@@ -161,9 +163,11 @@ export class GameService {
             this.fadeOutAndStop(currentAudio);
           }, fadeOutStart);
 
+
+
           setTimeout(() => {
             resolve(); // Résoudre la promesse après la pause
-          }, (this.trackDuration + this.pauseDuration) * 1000);
+          }, (this.trackDuration) * 1000);
         } else {
           console.log("Track too short");
           resolve(); // Résoudre immédiatement pour les pistes trop courtes
@@ -203,5 +207,23 @@ export class GameService {
   resetScore(): void {
     this.gameScore = 0; // Réinitialiser le score
     this.gameEnded = false;
+  }
+  private async timeBreak(): Promise<void> {
+    this.userInput = ''; // Réinitialiser l'input
+    this.gameIsPaused = true; // Indiquer que le jeu est en pause
+
+    // Afficher les réponses pendant la pause
+    console.log("Displaying answers...");
+    const currentAnswers = this.getCurrentAnswers();
+    currentAnswers.forEach(answer => {
+        console.log(`${answer.name}: ${answer.value}`);
+    });
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            this.gameIsPaused = false; // Réactiver l'entrée utilisateur
+            resolve(); // Résoudre la promesse après la pause
+        }, this.pauseDuration * 1000);
+    });
   }
 }

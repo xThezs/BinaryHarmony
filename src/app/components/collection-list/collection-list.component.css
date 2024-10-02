@@ -22,8 +22,12 @@ h2 {
   padding: 5px;
   margin: 3px 0;
   border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   transition: background-color 0.3s, transform 0.2s;
   cursor: pointer;
+  height: 40px; /* Hauteur fixe */
 }
 
 .collection-item:hover, .track-item:hover {
@@ -36,6 +40,18 @@ h2 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.collection-name, .track-title {
+  font-size: 14px; /* Réduction de la taille du texte */
+  margin: 0;
+  flex-grow: 1; /* Permet au titre d'utiliser l'espace disponible */
+}
+
+.track-controls {
+  display: flex;
+  align-items: center; /* Aligne les icônes au centre */
+  gap: 5px; /* Espacement entre les icônes */
 }
 
 .error-message {
@@ -95,7 +111,6 @@ ul {
 
 .edit-button {
   background: #4CAF50;
-  margin-right: 10px;
 }
 
 .edit-button:hover {
@@ -136,4 +151,16 @@ ul {
 
 .setup-button:active {
   background-color: #c2185b;
+}
+.track-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Assure que le texte et les icônes sont sur des bords opposés */
+}
+
+.track-info {
+  flex-grow: 1; /* Permet au texte de prendre tout l'espace disponible */
+  display: flex; /* Utilise un affichage flex pour aligner les éléments sur la même ligne */
+  justify-content: space-between; /* Espace entre le titre et les icônes */
+  align-items: center; /* Centre verticalement */
 }
